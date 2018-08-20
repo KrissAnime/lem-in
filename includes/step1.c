@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 11:14:36 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/20 11:10:21 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ int	read_map(t_ant **ant)
 		x = line_check(line);
 		ret = map_handler(ant, line, x);
 //		printf("k = %lu\n", k);
-		if (ret == FAIL && k < 6)
+		if (ret == FAIL && k < 5)
 			return (FAIL);
-		else if (ret == FAIL && k >= 6)
+		else if (ret == FAIL && k >= 5)
 			break ;
 	}
 	return (PASS);

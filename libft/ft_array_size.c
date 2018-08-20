@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:19:23 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/16 13:20:13 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/20 09:55:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_array_size(char **array)
 	size_t	x;
 
 	x = 0;
-	while (array[x])
+	while (array[x] != NULL)
 		x++;
 	return (x);
 }

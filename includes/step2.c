@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 11:26:04 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/20 10:00:05 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ char		***test_build(t_ant **ant)
 	new[x] = NULL;
 	if ((*ant)->test[0] == NULL)
 		free((*ant)->test);
-	else
-		free((*ant)->pospath);
 	return (new);
 }
 

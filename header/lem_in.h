@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 11:35:39 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/20 14:03:35 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_ant
 	char		**routes;
 	char		**path;
 	char		***test;
-	char		***pospath;
+	char		***pos;
 	int			val;
 	size_t		stin;
 	size_t		edin;
@@ -55,6 +55,9 @@ char			**builder(t_ant **ant, char **curr, char *line);
 char			**build_link(t_ant **ant, char **curr, char *line);
 
 char			*room_changer(char *mod, char *old, size_t x);
+char			*get_name(t_ant **ant, size_t i);
+char			*get_link(char *link, size_t, size_t code);
+char			*pass(char *room);
 
 int				read_room(t_ant **ant, char *line, size_t room);
 int				map_handler(t_ant **ant, char *line, size_t x);
@@ -66,6 +69,9 @@ int				has_link2(char *link, char *name);
 int				real_link(t_ant **ant, char *name, size_t x);
 int				check_path(t_ant **ant);
 
+size_t			newend(t_ant **ant, size_t loc);
+size_t			isitover(t_ant **ant);
+
 size_t			check_link(char *line, size_t i, size_t k);
 size_t			line_check(char *line);
 
@@ -73,6 +79,8 @@ size_t			room_format(char *line, size_t i);
 size_t			real_room(t_ant **ant);
 
 void			edit_sted(t_ant **ant, size_t x);
+
+void			find_links(t_ant **ant);
 
 void			free_array_2(char ***array, size_t x);
 void			free_ant(t_ant *ant);

@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/21 08:58:42 by cbester           #+#    #+#              #
-#    Updated: 2018/08/17 11:37:14 by cbester          ###   ########.fr        #
+#    Updated: 2018/08/20 12:43:33 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ FUNCTIONS = ft_bzero.c ft_memalloc.c ft_memchr.c ft_memcpy.c ft_memccpy.c\
 			ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_abs.c\
 			get_next_line.c get_next_line_var.c ft_numlen.c ft_dubcheck.c\
 			ft_array_size.c ft_findchar.c wdmatch.c ft_array_grow.c\
-			free_array.c
+			free_array.c ft_array_shrink.c free_big_array.c new_array.c\
+			print_array.c
 
 FILES = $(addprefix $(FILES_DIR), $(FUNCTIONS))
 OBJECTS = $(FILES:.c=.o)
@@ -44,7 +45,7 @@ $(NAME): $(OBJECTS)
 	@echo "\033[37mLibrary Built!\033[0m"
 
 %.o: %.c
-	@echo "\033[32mCreating Objects $@\033[0m"
+	@echo "\033[32mCreating\t$@\033[0m"
 	@$(COMPILER) $(FLAGS) -c $< -o $@
 
 .PHONY: clean fclean re

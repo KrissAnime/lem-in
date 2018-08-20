@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:29:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 11:38:17 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/20 10:53:47 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ char	**ft_array_grow(char **curr, char *line)
 	size_t	y;
 
 	x = 0;
-	y = ft_array_size(curr);
+	y = ft_array_size(curr) + 1;
 	if (!(new = (char**)malloc(sizeof(char*) * y + 1)))
 		return (NULL);
-	if (y > 2)
+	if (y > 1)
 	{
 		while (curr[x])
 		{
 			new[x] = ft_strdup(curr[x]);
 			x++;
 		}
-		free_array(curr, y);
+		free_array(curr, y - 1);
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;

@@ -6,45 +6,50 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 06:32:04 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 11:21:53 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/20 09:22:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-int	has_link2(char *link, char *name)
+char	*get_link(char *link, size_t x, size_t code)
+{
+	char	*link_name;
+
+	while (link[x] != '-')
+		x++;
+	if (code == 0)
+		link_name = ft_strsub(link, 0, x);
+	else
+		link_name = ft_strsub(link, x + 1, ft_strlen(link));
+	return (link_name);
+}
+
+int		has_link2(char *link, char *name)
 {
 	int		y;
-	int		z;
 	char	*temp;
 
-	z = 0;
-	while (link[z] != '-')
-		z++;
-	temp = ft_strsub(link, z + 1, ft_strlen(link));
+	temp = get_link(link, 0, 1);
 	y = ft_strcmp(temp, name);
 //	printf("Testing link 2: %s\tTesting name: %s\n", temp, name);
 	free(temp);
 	return (y);
 }
 
-int	has_link(char *link, char *name)
+int		has_link(char *link, char *name)
 {
-	int		x;
 	int		y;
 	char	*temp;
 
-	x = 0;
-	while (link[x] != '-')
-		x++;
-	temp = ft_strsub(link, 0, x);
+	temp = get_link(link, 0, 0);
 	y = ft_strcmp(temp, name);
 //	printf("Testing link 1: %s\tTesting name: %s\n", temp, name);
 	free(temp);
 	return (y);
 }
 
-int	real_link(t_ant **ant, char *name, size_t x)
+int		real_link(t_ant **ant, char *name, size_t x)
 {
 	char	*num;
 
@@ -66,7 +71,7 @@ int	real_link(t_ant **ant, char *name, size_t x)
 	return (IS_LINK);
 }
 
-int	check_path(t_ant **ant)
+int		check_path(t_ant **ant)
 {
 	size_t	x;
 	char	*num;

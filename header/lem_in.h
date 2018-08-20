@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
+/*   Updated: 2018/08/17 11:35:39 by cbester          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef	LEM_IN_H
+# define	LEM_IN_H
+# include "../libft/libft.h"
+
+enum	e_ant
+{
+	FAIL = 0,
+	PASS = 1,
+	ROUTE_FAIL = 2,
+	ROUTE_PASS = 3,
+	START = 4,
+	END = 5,
+	COMMENT = 6,
+	ROOM = 7,
+	LINK = 8,
+	IS_LINK = 9,
+	NO_LINK = 10,
+};
+
+typedef struct	s_ant
+{
+	size_t		ants;
+	size_t		msize;
+	size_t		lsize;
+	char		**links;
+	char		**rooms;
+	char		**routes;
+	char		**path;
+	char		***test;
+	char		***pospath;
+	int			val;
+	size_t		stin;
+	size_t		edin;
+	size_t		num;
+}				t_ant;
+
+t_ant			*init(void);
+
+char			***test_build(t_ant **ant);
+
+char			**destroyer(t_ant **ant, char **curr, size_t target);
+char			**builder(t_ant **ant, char **curr, char *line);
+char			**build_link(t_ant **ant, char **curr, char *line);
+
+char			*room_changer(char *mod, char *old, size_t x);
+
+int				read_room(t_ant **ant, char *line, size_t room);
+int				map_handler(t_ant **ant, char *line, size_t x);
+int				get_ants(char *line, t_ant **ant, size_t i);
+int				read_map(t_ant **ant);
+
+int				has_link(char *link, char *name);
+int				has_link2(char *link, char *name);
+int				real_link(t_ant **ant, char *name, size_t x);
+int				check_path(t_ant **ant);
+
+size_t			check_link(char *line, size_t i, size_t k);
+size_t			line_check(char *line);
+
+size_t			room_format(char *line, size_t i);
+size_t			real_room(t_ant **ant);
+
+void			edit_sted(t_ant **ant, size_t x);
+
+void			free_array_2(char ***array, size_t x);
+void			free_ant(t_ant *ant);
+
+#endif

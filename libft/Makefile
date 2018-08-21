@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/21 08:58:42 by cbester           #+#    #+#              #
-#    Updated: 2018/08/20 12:43:33 by cbester          ###   ########.fr        #
+#    Updated: 2018/08/21 08:37:59 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(NAME): $(OBJECTS)
 	@echo "\033[37mLibrary Built!\033[0m"
 
 %.o: %.c
-	@echo "\033[32mCreating\t$@\033[0m"
+	@echo "\033[32m[Creating\t$@]\033[0m"
 	@$(COMPILER) $(FLAGS) -c $< -o $@
 
 .PHONY: clean fclean re

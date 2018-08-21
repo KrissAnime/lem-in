@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 13:15:59 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/21 10:02:31 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,23 @@ size_t	isitover(t_ant **ant)
 	return (0);
 }
 
-size_t	newend(t_ant **ant, size_t loc)
+size_t	newend(t_ant **ant, size_t loc, size_t x, size_t y)
 {
-	size_t	x;
-	size_t	y;
-
-	y = 0;
+//	printf("Testing the end\n");
 	while ((*ant)->pos[loc][y])
 	{
-		x = 1;
 		while ((*ant)->pos[(*ant)->edin][x])
 		{
+		//	printf("%s\t%s\n", (*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]);
 			if (ft_strcmp((*ant)->pos[loc][y],
 						(*ant)->pos[(*ant)->edin][x]) == 0)
 			{
+		//		printf("Totally valid\n");
 				(*ant)->path = ft_array_grow((*ant)->path,
 						(*ant)->pos[(*ant)->edin][x]);
 				(*ant)->path = ft_array_grow((*ant)->path,
 						(*ant)->pos[(*ant)->edin][0]);
+		//		print_array((*ant)->path, '\n', 1);
 				return (1);
 			}
 			x++;

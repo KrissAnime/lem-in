@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 12:47:03 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/21 10:46:16 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	main(void)
 	printf("Start room: %lu\t End room: %lu\n", ant->stin, ant->edin);
 	if (!real_room(&ant))
 		return (fail(ant));
-	printf("Room data modified to remove co-ordinadtes after room validation\n");
-	print_array(ant->rooms, '\n', 1);
+//	printf("Room data modified to remove co-ordinadtes after room validation\n");
+//	print_array(ant->rooms, '\n', 1);
 	if (!check_path(&ant))
 		return (fail(ant));
-	printf("Data modified to add number of links for each room\n");
-	print_array(ant->rooms, '\n', 1);
-	printf("current msize: %lu\n", ant->msize);
+//	printf("Data modified to add number of links for each room\n");
+//	print_array(ant->rooms, '\n', 1);
+//	printf("current msize: %lu\n", ant->msize);
 //	printf("location of ' ' in '1 23 3' is: %lu\n", wdmatch("1 23 3", "23"));
 //	printf("3d array for validating room coordinates\n");
 //	printf("%s\n", ant->test[1][1]);
@@ -83,7 +83,11 @@ int	main(void)
 		printf("\n");
 		y++;
 	}*/
-	find_links(&ant);
+	find_links(&ant, 1, ant->stin, ant->edin);
+	print_array(ant->path, '\n', 1);
+	final_task(&ant);
+//	while (ant->pos[x])
+//		print_array(ant->pos[x++], '\n', 1);
 /*	printf("Data modified to delete unlinked rooms\n");
 	while (ant->rooms[x])
 		printf("%s\n", ant->rooms[x++]);*/

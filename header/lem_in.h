@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 14:03:35 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/21 10:27:54 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int				has_link2(char *link, char *name);
 int				real_link(t_ant **ant, char *name, size_t x);
 int				check_path(t_ant **ant);
 
-size_t			newend(t_ant **ant, size_t loc);
+size_t			next_room(t_ant **ant, size_t loc);
+
+size_t			newend(t_ant **ant, size_t loc, size_t x, size_t y);
 size_t			isitover(t_ant **ant);
 
 size_t			check_link(char *line, size_t i, size_t k);
@@ -79,8 +81,9 @@ size_t			room_format(char *line, size_t i);
 size_t			real_room(t_ant **ant);
 
 void			edit_sted(t_ant **ant, size_t x);
+void			final_task(t_ant **ant);
 
-void			find_links(t_ant **ant);
+void			find_links(t_ant **ant, size_t x, size_t loc, size_t e);
 
 void			free_array_2(char ***array, size_t x);
 void			free_ant(t_ant *ant);

@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/14 08:43:37 by cbester           #+#    #+#              #
-#    Updated: 2018/08/20 08:54:26 by cbester          ###   ########.fr        #
+#    Updated: 2018/08/21 10:45:38 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FLAGS = -Wall -Wextra -Werror
 FILE_DIR = ./includes/
 LIB_DIR = ./libft/
 
-FILE_NAMES = main.c step1.c step0.c step00.c free_all.c step2.c step3.c step4.c
+FILE_NAMES = main.c step1.c step0.c step00.c free_all.c step2.c step3.c step4.c\
+			 step000.c
 
 LIBFT = $(addprefix $(LIB_DIR), $(LIB_NAME))
 FILES = $(addprefix $(FILE_DIR), $(FILE_NAMES))

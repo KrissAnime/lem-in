@@ -6,11 +6,32 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 10:00:05 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/21 13:44:59 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+char		*change(char *s, char b)
+{
+	char	*new;
+	size_t	x;
+	size_t	y;
+
+	y = ft_strlen(s);
+	if (!(new = (char*)malloc(y)))
+		return (NULL);
+	x = 0;
+	while (x < y - 1)
+	{
+		new[x] = s[x];
+		x++;
+	}
+	new[x++] = b;
+	new[x] = '\0';
+	free(s);
+	return (new);
+}
 
 void		edit_sted(t_ant **ant, size_t x)
 {

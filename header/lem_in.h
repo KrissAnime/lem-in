@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/21 10:27:54 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/21 13:33:47 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char			*room_changer(char *mod, char *old, size_t x);
 char			*get_name(t_ant **ant, size_t i);
 char			*get_link(char *link, size_t, size_t code);
 char			*pass(char *room);
+char			*change(char *s, char b);
 
 int				read_room(t_ant **ant, char *line, size_t room);
 int				map_handler(t_ant **ant, char *line, size_t x);

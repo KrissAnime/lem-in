@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 12:43:18 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/23 09:47:22 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 ** Single dimensional array functions
 */
 
+char					*ft_joinfree(char *s1, char *s2);
 char					*ft_itoa(int n);
 char					*ft_strcat(char *s1, const char *s2);
 char					*ft_strchr(const char *s, int c);

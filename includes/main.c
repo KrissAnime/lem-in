@@ -6,11 +6,53 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/21 10:46:16 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/23 10:54:11 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+void		move_start(t_ant **ant, size_t x, size_t k)
+{
+	char	*temp;
+	char	*temp2;
+
+	while ((*ant)->path[0][x] != '-')
+		x--;
+//	printf("Or is it me?\n");
+	if ((*ant)->path[k][ft_strlen((*ant)->path[k]) - 1] == '0')
+	{
+		temp = ft_strsub((*ant)->path[0], x + 1, ft_strlen((*ant)->path[0]) - x);
+//		printf("RAP\n");
+		temp2 = ft_itoa(ft_atoi(temp) - 1);
+//		printf("TAP\n");
+		(*ant)->path[0] = ft_joinfree((*ant)->path[k], temp2);
+//		printf("TAP\n");
+		(*ant)->path[k] = change((*ant)->path[k], '1');
+//		printf("TAP\n");
+		free(temp2);
+		free(temp);
+	}
+}
+
+void		move_end(t_ant **ant, size_t x, size_t k)
+{
+	char	*temp;
+	char	*temp2;
+
+	while ((*ant)->path[k][x] != '-')
+		x--;
+//	printf("Is it me?\n");
+	if ((*ant)->path[k][ft_strlen((*ant)->path[k - 1]) - 1] != '0')
+	{
+		temp = ft_strsub((*ant)->path[k], x + 1, ft_strlen((*ant)->path[k]) - x);
+		temp2 = ft_itoa(ft_atoi(temp) + 1);
+		(*ant)->path[k] = ft_joinfree((*ant)->path[k], temp2);
+		(*ant)->path[k - 1] = change((*ant)->path[x], '0');
+		free (temp2);
+		free (temp);
+	}
+}
 
 t_ant		*init(void)
 {
@@ -84,7 +126,8 @@ int	main(void)
 		y++;
 	}*/
 	find_links(&ant, 1, ant->stin, ant->edin);
-	print_array(ant->path, '\n', 1);
+//	sleep(1);
+////	print_array(ant->path, '\n', 1);
 	final_task(&ant);
 //	while (ant->pos[x])
 //		print_array(ant->pos[x++], '\n', 1);

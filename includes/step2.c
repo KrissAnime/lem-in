@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/21 13:44:59 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/23 10:14:11 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ char		*change(char *s, char b)
 	size_t	y;
 
 	y = ft_strlen(s);
-	if (!(new = (char*)malloc(y)))
+	if (!(new = (char*)malloc(y + 1)))
 		return (NULL);
 	x = 0;
-	while (x < y - 1)
+	while (s[x])
 	{
 		new[x] = s[x];
 		x++;
 	}
+//	printf("Maybe?\n");
 	new[x++] = b;
 	new[x] = '\0';
-	free(s);
+//	free(s);
 	return (new);
 }
 

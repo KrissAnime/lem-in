@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/21 13:45:29 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/23 12:25:33 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ static void	add_space(t_ant **ant)
 
 void	march(t_ant **ant, size_t x)
 {
-	char	*temp;
+	size_t	y;
+	size_t	k;
 
-	if (((*ant)->path[x - 1][ft_strlen((*ant)->path[x - 1]) - 1]) != '0')
-	{
-		temp = ft_itoa(ft_atoi(&(*ant)->path[x][ft_strlen((*ant)->path[x])
-					- 1]) + 1);
-		(*ant)->path[x] = free_a((*ant)->path[x], temp);
-		(*ant)->path[x - 1] = change((*ant)->path[x], '0');
-		free(temp);
-	}
+	k = x;
+	y = ft_strlen((*ant)->path[x - 1]);
+//	printf("Bug tracker 01\n");
+	if (((*ant)->path[x - 1][y - 1]) != '0')
+		move_end(ant, y - 1, k);
+	x--;
+//	printf("Bug tracker 02\n");
 	while (x > 1)
 	{
 		if (((*ant)->path[x][ft_strlen((*ant)->path[x]) - 1]) == '0' &&
@@ -77,35 +77,47 @@ void	march(t_ant **ant, size_t x)
 		}
 		x--;
 	}
-	print_array((*ant)->path, '\n', 1);
+//	printf("Bug tracker 03\n");
+	y = ft_strlen((*ant)->path[0]);
+	if ((*ant)->path[0][ft_strlen((*ant)->path[0]) - 1] != '0')
+		move_start(ant, y - 1, 1);
+//	print_array((*ant)->path, '\n', 1);
+//	sleep(5);
+//	printf("Bug tracker 04\n");
 }
 
 void	marching(t_ant **ant, size_t x)
 {
 	size_t	i;
-	char	*temp;
-	size_t	j;
+	size_t	k;
+	char	*name;
 
-	i = ft_array_size((*ant)->path) - 1;
+	i = 1;
+//	printf("TEsting\n");
+	ft_putchar('\n');
+	print_array((*ant)->path, '\t', 1);
+	ft_putchar('\n');
 	while ((*ant)->path[i])
 	{
-		if ((*ant)->path[i][ft_strlen((*ant)->path[i]) - 1] == '1')
-		{
-			j = 0;
-			while ((*ant)->path[i][j] != '-')
-				j++;
-			temp = ft_strsub((*ant)->path[j], 0, j);
-			printf("%s\n", temp);
-			ft_putchar('L');
-			ft_putnbr(x);
-			ft_putchar('-');
-			ft_putstr(temp);
-			ft_putchar('\t');
-			free(temp);
-		}
-		i--;
+		k = 0;
+		//printf("TEsting\n");
+		while ((*ant)->path[i][k] != '-')
+			k++;
+		//	printf("%s\n", temp);
+		ft_putchar('L');
+		ft_putnbr(x);
+		ft_putchar('-');
+		name = ft_strsub((*ant)->path[i], 0, k);
+	//	printf("Testing what is name: %s\n", name);
+	//	sleep(1);
+		ft_putstr(name);
+		ft_putchar('\n');
+		i++;
+		free(name);
 	}
-	print_array((*ant)->path, '\n', 1);
+//	sleep(3);
+//	print_array((*ant)->path, '\n', 1);
+//	sleep(3);
 }
 
 void		final_task(t_ant **ant)
@@ -122,13 +134,18 @@ void		final_task(t_ant **ant)
 		return ;
 	}
 	add_space(ant);
-	while (ft_atoi(&(*ant)->path[0][ft_strlen((*ant)->path[0])])
-			!= (int)(*ant)->ants)
+//	sleep(1);
+//	print_array((*ant)->path, '\n', 1);
+//	sleep(1);
+	i = (*ant)->ants;
+	while (i)
 	{
-		march(ant, i - 1);
-//		marching(ant, x);
+	//	march(ant, i - 1);
+	//	sleep(1);
+		marching(ant, x);
 		x++;
-		sleep(1);
+		i--;
+	//	sleep(1);
 	}
-	print_array((*ant)->path, '\n', 1);
+	//print_array((*ant)->path, '\n', 1);
 }

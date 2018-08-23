@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/23 09:50:58 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/23 13:44:07 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_ant
 	size_t		lsize;
 	char		**links;
 	char		**rooms;
-	char		**routes;
+	//char		**routes;
 	char		**path;
 	char		***test;
 	char		***pos;
@@ -90,6 +90,6 @@ void			final_task(t_ant **ant);
 void			find_links(t_ant **ant, size_t x, size_t loc, size_t e);
 
 void			free_array_2(char ***array, size_t x);
-void			free_ant(t_ant *ant);
+void			free_ant(t_ant *ant, size_t level);
 
 #endif

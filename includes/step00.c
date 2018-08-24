@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 10:19:03 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:35:23 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,27 @@ size_t	isitover(t_ant **ant)
 
 size_t	newend(t_ant **ant, size_t loc, size_t x, size_t y)
 {
-	printf("Testing the end\n");
+//	printf("Testing the end\n");
 	while ((*ant)->pos[loc][y])
 	{
 		x = 0;
 		while ((*ant)->pos[(*ant)->edin][x])
 		{
-			printf("checking room %s\tend room-> %s\n", (*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]);
+//			printf("checking room %s\tend room-> %s\n", (*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]);
 			if (ft_strequ((*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]))
 			{
-		//		printf("Totally valid\n");
+				printf("Totally valid\n");
 				(*ant)->path = ft_array_grow((*ant)->path,
 						(*ant)->pos[(*ant)->edin][x]);
 				(*ant)->path = ft_array_grow((*ant)->path,
 						(*ant)->pos[(*ant)->edin][0]);
-		//		print_array((*ant)->path, '\n', 1);
+				print_array((*ant)->path, '\n', 1);
 				return (1);
 			}
 			x++;
 		}
 		y++;
-		printf("Boom boom\n");
+//		printf("Boom boom\n");
 	}
 	return (0);
 }
@@ -108,9 +108,9 @@ char	**build_link(t_ant **ant, char **curr, char *line)
 			new[x] = ft_strdup(curr[x]);
 			x++;
 		}
-		free_array(curr, ft_array_size(curr));
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
+	free_array(curr, ft_array_size(curr));
 	return (new);
 }

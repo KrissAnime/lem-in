@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/23 10:14:11 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:33:02 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,14 @@ static void	loc_scrap(t_ant **ant)
 char		***test_build(t_ant **ant)
 {
 	size_t	x;
+	size_t	t;
 	char	***new;
 
 	x = 0;
-	if (!(new = (char***)malloc(sizeof(char**) * (*ant)->msize)))
+	t = 0;
+	while ((*ant)->rooms[t])
+		t++;
+	if (!(new = (char***)malloc(sizeof(char**) * t + 1)))
 		return (NULL);
 	while ((*ant)->rooms[x])
 	{
@@ -84,7 +88,7 @@ size_t		real_room(t_ant **ant)
 
 	x = 0;
 	(*ant)->test = test_build(ant);
-//	printf("RAP\t");
+	printf("RAP\t");
 	while ((*ant)->test[x])
 	{
 		y = x + 1;

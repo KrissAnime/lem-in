@@ -6,13 +6,13 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 10:16:30 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:15:06 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-static char	*free_a(char *s1, char *s2)
+char	*free_a(char *s1, char *s2)
 {
 	size_t	x;
 	size_t	y;
@@ -36,7 +36,7 @@ static char	*free_a(char *s1, char *s2)
 	return (new);
 }
 
-static void	add_space(t_ant **ant)
+void	add_space(t_ant **ant)
 {
 	size_t	x;
 	char	*temp;
@@ -52,6 +52,7 @@ static void	add_space(t_ant **ant)
 		x++;
 	}
 }
+
 
 void	march(t_ant **ant, size_t x)
 {
@@ -126,19 +127,23 @@ void		final_task(t_ant **ant)
 	size_t	x;
 
 	x = 1;
-	i = ft_array_size((*ant)->path);
+	printf("Before Size");
+	//i = ft_array_size((*ant)->path);
+	printf("After Size");
 	if (!ft_strequ((*ant)->path[ft_array_size((*ant)->path) - 1],
 				(*ant)->pos[(*ant)->edin][0]))
 	{
 		ft_putstr("Could not find a valid path\n");
 		return ;
 	}
+	printf("No space");
 	add_space(ant);
+	printf("My space");
 //	sleep(1);
 //	print_array((*ant)->path, '\n', 1);
 //	sleep(1);
 	i = (*ant)->ants;
-	printf("Who broke me?\n");
+//	printf("Who broke me?\n");
 	while (i)
 	{
 	//	march(ant, i - 1);

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 08:54:56 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:52:08 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_ants(char *line, t_ant **ant, size_t i)
 	}
 	size = ft_atoi(line);
 	num = ft_itoa(size);
-	if (ft_strcmp(line, num) != 0 || size <= 0)
+	if (!ft_strequ(line, num) || size <= 0)
 	{
 		free(num);
 		return (FAIL);

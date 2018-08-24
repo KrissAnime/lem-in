@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 09:15:59 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:37:55 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,14 @@ int	main(void)
 		return (fail(ant, 1));
 	if (!check_path(&ant))
 		return (fail(ant, 2));
+	printf("Find links\n");
 	find_links(&ant, 1, ant->stin, ant->edin);
+	printf("Final task\n");
 	final_task(&ant);
+	printf("Free ants\n");
 	free_ant(ant, 3);
+//	while (1)
+//	{}
+	printf("Free ants\n");
 	return (0);
 }

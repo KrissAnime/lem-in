@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 13:35:23 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 14:00:14 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*pass(char *room)
 	char	*new;
 	size_t	x;
 
-	if (!(new = (char*)malloc(ft_strlen(room) + 1)))
+	if (!(new = (char*)malloc(ft_strlen(room))))
 		return (NULL);
 	x = 0;
 	while (room[x])

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 13:52:08 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:54:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,10 @@ int	read_map(t_ant **ant)
 	k = 0;
 	get_next_line_var(0, &line, 1);
 	if (!(get_ants(line, ant, 0)))
+	{
+		free(line);
 		return (FAIL);
+	}
 	while (get_next_line_var(0, &line, 1))
 	{
 		k++;

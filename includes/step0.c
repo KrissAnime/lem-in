@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 13:42:00 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:57:32 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*room_changer(char *mod, char *old, size_t x)
 	char	*new;
 	size_t	i;
 
-	if (!(new = (char*)malloc(ft_strlen(old) + ft_strlen(mod) + 4)))
+	if (!(new = (char*)malloc(ft_strlen(old) + ft_strlen(mod) + 3)))
 		return (NULL);
 //	printf("\n||| %lu |||\n", ft_strlen(mod)+ ft_strlen(old));
 	i = 0;
@@ -75,6 +75,7 @@ size_t	room_format(char *line, size_t i)
 			val = ft_itoa(ft_atoi(test[i]));
 			if (!ft_strequ(val, test[i]))
 			{
+				free_array(test, ft_array_size(test));
 				free(val);
 				return (FAIL);
 			}
@@ -134,9 +135,9 @@ char	**destroyer(t_ant **ant, char **curr, size_t target)
 			else
 				new[x++] = ft_strdup(curr[y++]);
 		}
-		free_array(curr, ft_array_size(curr));
 	}
 	new[x] = NULL;
 	(*ant)->msize--;
+	free_array(curr, ft_array_size(curr));
 	return (new);
 }

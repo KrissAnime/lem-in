@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/23 09:47:22 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 08:07:43 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ typedef struct			s_list
 	struct s_list		*next;
 }						t_list;
 
+
+/*
+** 3-D array manipulation
+*/
+
+void					free_big_array(char ***array);
+
 /*
 ** void return functions
 */
 
-
-void					ft_free_big_array(char ***array);
 void					free_array(char **array, size_t x);
 void					ft_bzero(void *s, size_t n);
 void					*ft_memalloc(size_t size);

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/23 12:28:42 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 08:14:25 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,11 +146,11 @@ void	find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 		map(ant, 0, loc, ft_array_size((*ant)->path) - 1);
 		if (ft_strcmp((*ant)->path[k], (*ant)->pos[e][0]) == 0)
 			return ;
-		ft_putchar('\n');
-		print_array((*ant)->path, '\n', 1);
-		sleep(3);
+//		ft_putchar('\n');
+//		print_array((*ant)->path, '\n', 1);
+//		sleep(3);
 		loc = location(ant);
-		sleep(2);
+//		sleep(2);
 	//	printf("We are in: %s\t Looking at:\t",
 //				(*ant)->path[ft_array_size((*ant)->path) - 1]);
 //		print_array((*ant)->pos[loc], '\n', 1);
@@ -158,6 +158,7 @@ void	find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 	//		((*ant)->path[ft_array_size((*ant)->path)])
 	}
 	print_array((*ant)->path, '\n', 1);
+	free_big_array((*ant)->pos);
 //	sleep(10);
 //	print_array((*ant)->path, '\n', 1);
 //	sleep(10);

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/21 10:02:31 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 08:32:05 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	**build_link(t_ant **ant, char **curr, char *line)
 	x = 0;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->lsize)))
 		return (NULL);
-	if ((*ant)->msize > 2)
+	if ((*ant)->lsize > 2)
 	{
 		while (curr[x])
 		{

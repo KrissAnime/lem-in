@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 11:10:41 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 08:23:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,12 @@ size_t	check_link(char *line, size_t i, size_t	k)
 				i++;
 			test2 = ft_strsub(line, k, i - k);
 			test = ft_itoa(ft_atoi(test2));
-			if (ft_strcmp(test, test2) != 0)
+			if (!ft_strequ(test, test2))
+			{
+				free(test);
+				free(test2);
 				return (FAIL);
+			}
 			free(test);
 			free(test2);
 		}
@@ -82,7 +86,7 @@ size_t	room_format(char *line, size_t i)
 		if (i != 0)
 		{
 			val = ft_itoa(ft_atoi(test[i]));
-			if (strcmp(val, test[i]) != 0)
+			if (!ft_strequ(val, test[i]))
 			{
 				free(val);
 				return (FAIL);
@@ -92,7 +96,10 @@ size_t	room_format(char *line, size_t i)
 		i++;
 	}
 	if (i != 3)
+	{
+		free_array(test, ft_array_size(test));
 		return (FAIL);
+	}
 	free_array(test, ft_array_size(test));
 	return (PASS);
 }

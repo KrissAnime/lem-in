@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/23 12:25:33 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 08:13:11 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	marching(t_ant **ant, size_t x)
 
 	i = 1;
 //	printf("TEsting\n");
-	ft_putchar('\n');
-	print_array((*ant)->path, '\t', 1);
-	ft_putchar('\n');
+//	ft_putchar('\n');
+//	print_array((*ant)->path, '\t', 1);
+//	ft_putchar('\n');
 	while ((*ant)->path[i])
 	{
 		k = 0;

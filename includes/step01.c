@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array_grow.c                                    :+:      :+:    :+:   */
+/*   step01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/17 11:29:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 09:52:40 by cbester          ###   ########.fr       */
+/*   Created: 2018/08/24 09:05:30 by cbester           #+#    #+#             */
+/*   Updated: 2018/08/24 09:15:19 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/lem_in.h"
 
-char	**ft_array_grow(char **curr, char *line)
+char	*room_name(char *s)
 {
-	char	**new;
 	size_t	x;
-	size_t	y;
 
 	x = 0;
-	y = ft_array_size(curr) + 1;
-	if (!(new = (char**)malloc(sizeof(char*) * y + 1)))
-		return (NULL);
-	if (y > 1)
+	while (s[x] != ' ')
+		x++;
+	return (ft_strsub(s, 0, x));
+}
+
+size_t	compare_name(char *test, char *test2, char *name)
+{
+	if (ft_strequ(test, name) || ft_strequ(test2, name))
 	{
-		while (x < y - 1)
-		{
-			new[x] = ft_strdup(curr[x]);
-			x++;
-		}
-		free_array(curr, y - 1);
+		free(test);
+		free(test2);
+		free(name);
+		return (PASS);
 	}
-	new[x++] = ft_strdup(line);
-	new[x] = NULL;
-	return (new);
+	free(name);
+	return (FAIL);
 }

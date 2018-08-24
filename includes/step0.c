@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 08:23:46 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 09:15:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,35 +43,22 @@ char	*room_changer(char *mod, char *old, size_t x)
 	return (new);
 }
 
-size_t	check_link(char *line, size_t i, size_t	k)
+size_t	check_link(char *line, size_t i, size_t	k, t_ant **ant)
 {
 	char	*test;
 	char	*test2;
 
-	while (line[i])
+	test = get_link(line, i, 0);
+	test2 = get_link(line, i, 1);
+	while ((*ant)->rooms[k])
 	{
-		if (ft_isdigit(line[i]))
-		{
-			k = i;
-			while (ft_isdigit(line[i]))
-				i++;
-			test2 = ft_strsub(line, k, i - k);
-			test = ft_itoa(ft_atoi(test2));
-			if (!ft_strequ(test, test2))
-			{
-				free(test);
-				free(test2);
-				return (FAIL);
-			}
-			free(test);
-			free(test2);
-		}
-		else if (!ft_isdigit(line[i]) && line[i] != '-')
-			return (FAIL);
-		else
-			i++;
+		if (compare_name(test, test2, room_name((*ant)->rooms[k])))
+			return (PASS);
+		k++;
 	}
-	return (PASS);
+	free(test);
+	free(test2);
+	return (FAIL);
 }
 
 size_t	room_format(char *line, size_t i)

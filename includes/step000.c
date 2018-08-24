@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 08:13:11 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 10:16:30 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ void		final_task(t_ant **ant)
 
 	x = 1;
 	i = ft_array_size((*ant)->path);
-	if (ft_strcmp((*ant)->path[ft_array_size((*ant)->path) - 1],
-				(*ant)->pos[(*ant)->edin][0]) != 0)
+	if (!ft_strequ((*ant)->path[ft_array_size((*ant)->path) - 1],
+				(*ant)->pos[(*ant)->edin][0]))
 	{
 		ft_putstr("Could not find a valid path\n");
 		return ;
@@ -138,6 +138,7 @@ void		final_task(t_ant **ant)
 //	print_array((*ant)->path, '\n', 1);
 //	sleep(1);
 	i = (*ant)->ants;
+	printf("Who broke me?\n");
 	while (i)
 	{
 	//	march(ant, i - 1);

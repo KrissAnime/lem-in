@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 08:32:05 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 10:19:03 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ size_t	isitover(t_ant **ant)
 
 size_t	newend(t_ant **ant, size_t loc, size_t x, size_t y)
 {
-//	printf("Testing the end\n");
+	printf("Testing the end\n");
 	while ((*ant)->pos[loc][y])
 	{
+		x = 0;
 		while ((*ant)->pos[(*ant)->edin][x])
 		{
-		//	printf("%s\t%s\n", (*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]);
-			if (ft_strcmp((*ant)->pos[loc][y],
-						(*ant)->pos[(*ant)->edin][x]) == 0)
+			printf("checking room %s\tend room-> %s\n", (*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]);
+			if (ft_strequ((*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]))
 			{
 		//		printf("Totally valid\n");
 				(*ant)->path = ft_array_grow((*ant)->path,
@@ -57,6 +57,7 @@ size_t	newend(t_ant **ant, size_t loc, size_t x, size_t y)
 			x++;
 		}
 		y++;
+		printf("Boom boom\n");
 	}
 	return (0);
 }

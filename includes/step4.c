@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 08:14:25 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 10:22:03 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@ static size_t	location(t_ant **ant)
 
 	loc = 0;
 	end = ft_array_size((*ant)->path) - 1;
-	while ((*ant)->pos[loc][0])
+	printf("Is it\n");
+	while (*(*ant)->pos[loc])
 	{
-		if (ft_strequ((*ant)->path[end], (*ant)->pos[loc][0]))
-			return (loc);
+		printf("Could it be?\n");
+		if (ft_strequ((*ant)->path[end], *(*ant)->pos[loc]))
+			break ;
+		printf("Maybe\n");
 		loc++;
+		printf("Possibly\n");
 	}
-	return (0);
+	printf("my fault\n");
+	return (loc);
 }
 
 static size_t	map(t_ant **ant, int x, int loc, size_t l)
@@ -42,7 +47,7 @@ static size_t	map(t_ant **ant, int x, int loc, size_t l)
 	size_t	e;
 
 	i = -1;
-	while ((*ant)->pos[loc][x])
+	while (x < (int)ft_array_size((*ant)->pos[loc]))
 	{
 		y = next_room(ant, loc);
 		if (y != 0)
@@ -59,6 +64,7 @@ static size_t	map(t_ant **ant, int x, int loc, size_t l)
 			}
 			(*ant)->pos[loc][x] = pass((*ant)->pos[loc][x]);
 			(*ant)->path = ft_array_grow((*ant)->path, (*ant)->pos[loc][y]);
+			printf("Moving Forward\n");
 			return (1);
 		}
 		else
@@ -69,7 +75,11 @@ static size_t	map(t_ant **ant, int x, int loc, size_t l)
 //	(*ant)->path[i] = pass((*ant)->path[i]);
 //	printf("shrinking?\n");
 //	print_array((*ant)->path, '\n', 1);
+	printf("Garbage\n");
+	print_array((*ant)->path, '\n', 1);
 	(*ant)->path = ft_array_shrink((*ant)->path);
+	ft_putchar('\n');
+	print_array((*ant)->path, '\n', 1);
 //	print_array((*ant)->path, '\n', 1);
 //	ft_putchar('\n');
 	return (0);
@@ -124,6 +134,7 @@ static void	create_possibilities(t_ant **ant, size_t x, size_t y)
 		}
 		y++;
 	}
+	(*ant)->pos[y] = ft_strsplit("", ' ');
 	(*ant)->path = new_array((*ant)->pos[(*ant)->stin][0]);
 }
 
@@ -132,24 +143,34 @@ void	find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 	size_t	k;
 
 	create_possibilities(ant, 0, 0);
+	printf("We have possibilites\n");
 	while (isitover(ant))
 	{
 		x = 0;
 		k = ft_array_size((*ant)->path) - 1;
-		if (ft_strcmp((*ant)->pos[loc][x], (*ant)->pos[e][0]) == 0)
+		printf("K is successful\n");
+		if (ft_strequ((*ant)->pos[loc][x], (*ant)->pos[e][0]))
 		{
+			printf("End of the line\n");
 		//	(*ant)->path = ft_array_grow((*ant)->path, (*ant)->pos[e][0]);
 			return ;
 		}
+		printf("No end\n");
 		if (newend(ant, loc, 1, 1) == 1)
 			return ;
+		printf("Map breaker\n");
 		map(ant, 0, loc, ft_array_size((*ant)->path) - 1);
-		if (ft_strcmp((*ant)->path[k], (*ant)->pos[e][0]) == 0)
-			return ;
-//		ft_putchar('\n');
-//		print_array((*ant)->path, '\n', 1);
-//		sleep(3);
+		printf("Map Resitst\n");
+//		if (ft_strequ((*ant)->path[k], (*ant)->pos[e][0]) == 0)
+//			return ;
+		printf("The end?\n");
 		loc = location(ant);
+		printf("Location!?\n");
+		ft_putchar('\n');
+//		print_array((*ant)->path, '\n', 1);
+//		printf("Current loc is\t%lu\t%s\n", loc,
+//				(*ant)->path[ft_array_size((*ant)->path) - 1]);
+	//	sleep(1);
 //		sleep(2);
 	//	printf("We are in: %s\t Looking at:\t",
 //				(*ant)->path[ft_array_size((*ant)->path) - 1]);
@@ -157,6 +178,7 @@ void	find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 //		ft_putchar('\n');
 	//		((*ant)->path[ft_array_size((*ant)->path)])
 	}
+	printf("It is over\n");
 	print_array((*ant)->path, '\n', 1);
 	free_big_array((*ant)->pos);
 //	sleep(10);

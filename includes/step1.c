@@ -6,26 +6,35 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 11:10:21 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/24 08:54:56 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-size_t	line_check(char *line)
+/*
+**	Room format and link verification are in step0.c
+*/
+
+size_t	line_check(char *line, t_ant **ant)
 {
-	if (ft_strcmp(line, "##start") == 0)
+	if (ft_strequ(line, "##start"))
 		return (START);
-	else if (ft_strcmp(line, "##end") == 0)
+	else if (ft_strequ(line, "##end"))
 		return (END);
 	else if (line[0] == '#' && line[1] != '#')
 		return (COMMENT);
 	else if (room_format(line, 0))
 		return (ROOM);
-	else if (check_link(line, 0, 0))
+	else if (check_link(line, 0, 0, ant))
 		return (LINK);
 	return (FAIL);
 }
+
+/*
+**	Verifies that the first line is number of ants and that there are ants to
+**	move
+*/
 
 int	get_ants(char *line, t_ant **ant, size_t i)
 {
@@ -39,12 +48,20 @@ int	get_ants(char *line, t_ant **ant, size_t i)
 	}
 	size = ft_atoi(line);
 	num = ft_itoa(size);
-	free(num);
-	if (strcmp(line, num) != 0 || size <= 0)
+	if (ft_strcmp(line, num) != 0 || size <= 0)
+	{
+		free(num);
 		return (FAIL);
+	}
+	free(num);
 	(*ant)->ants = (size_t)size;
 	return (PASS);
 }
+
+/*
+**	Manages the start and end rooms, also saves their indexes in within the
+**	2D array
+*/
 
 int	read_room(t_ant **ant, char *line, size_t room)
 {
@@ -103,13 +120,16 @@ int	read_map(t_ant **ant)
 	while (get_next_line_var(0, &line, 1))
 	{
 		k++;
-		x = line_check(line);
+		x = line_check(line, ant);
 		ret = map_handler(ant, line, x);
-//		printf("k = %lu\n", k);
 		if (ret == FAIL && k < 5)
+		{
+			free(line);
 			return (FAIL);
+		}
 		else if (ret == FAIL && k >= 5)
 			break ;
 	}
+	free(line);
 	return (PASS);
 }

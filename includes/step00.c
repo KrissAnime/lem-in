@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 14:00:14 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/27 10:17:28 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,22 @@ size_t	isitover(t_ant **ant)
 
 size_t	newend(t_ant **ant, size_t loc, size_t x, size_t y)
 {
-//	printf("Testing the end\n");
 	while ((*ant)->pos[loc][y])
 	{
-		x = 0;
+		x = 1;
 		while ((*ant)->pos[(*ant)->edin][x])
 		{
-//			printf("checking room %s\tend room-> %s\n", (*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]);
 			if (ft_strequ((*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]))
 			{
-				printf("Totally valid\n");
 				(*ant)->path = ft_array_grow((*ant)->path,
 						(*ant)->pos[(*ant)->edin][x]);
 				(*ant)->path = ft_array_grow((*ant)->path,
 						(*ant)->pos[(*ant)->edin][0]);
-				print_array((*ant)->path, '\n', 1);
 				return (1);
 			}
 			x++;
 		}
 		y++;
-//		printf("Boom boom\n");
 	}
 	return (0);
 }
@@ -68,7 +63,7 @@ char	*get_name(t_ant **ant, size_t i)
 	char	*name;
 
 	x = 0;
-	while ((*ant)->rooms[i][x] != ' ')
+	while ((*ant)->rooms[i][x] != ' ' && (*ant)->rooms[i][x])
 		x++;
 	name = ft_strsub((*ant)->rooms[i], 0, x);
 	return (name);
@@ -79,7 +74,7 @@ char	*pass(char *room)
 	char	*new;
 	size_t	x;
 
-	if (!(new = (char*)malloc(ft_strlen(room))))
+	if (!(new = (char*)malloc(ft_strlen(room) + 1)))
 		return (NULL);
 	x = 0;
 	while (room[x])
@@ -88,6 +83,7 @@ char	*pass(char *room)
 		x++;
 	}
 	new[x++] = '-';
+	new[x] = '\0';
 	free(room);
 	return (new);
 }

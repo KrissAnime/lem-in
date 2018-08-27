@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 13:54:46 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/27 11:25:17 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,12 @@ int	get_ants(char *line, t_ant **ant, size_t i)
 
 int	read_room(t_ant **ant, char *line, size_t room)
 {
-	get_next_line_var(0, &line, 1);
+	get_next_line(0, &line);
 	if (room == 0 && room_format(line, 0))
 	{
 		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, line)))
 			return (FAIL);
 		(*ant)->stin = (*ant)->msize - 2;
-	//	printf("msize = %lu | %s\n", (*ant)->msize, (*ant)->rooms[(*ant)->msize - 2]);
 	}
 	else if (room == 1 && room_format(line, 0))
 	{
@@ -114,13 +113,13 @@ int	read_map(t_ant **ant)
 
 	line = NULL;
 	k = 0;
-	get_next_line_var(0, &line, 1);
+	get_next_line(0, &line);
 	if (!(get_ants(line, ant, 0)))
 	{
 		free(line);
 		return (FAIL);
 	}
-	while (get_next_line_var(0, &line, 1))
+	while (get_next_line(0, &line))
 	{
 		k++;
 		x = line_check(line, ant);

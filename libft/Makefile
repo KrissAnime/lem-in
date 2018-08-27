@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/21 08:58:42 by cbester           #+#    #+#              #
-#    Updated: 2018/08/23 09:47:35 by cbester          ###   ########.fr        #
+#    Updated: 2018/08/27 11:22:41 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ FUNCTIONS = ft_bzero.c ft_memalloc.c ft_memchr.c ft_memcpy.c ft_memccpy.c\
 			ft_tolower.c ft_toupper.c ft_strcmp.c ft_strequ.c ft_strlcat.c\
 			ft_strlen.c ft_strncmp.c ft_strnequ.c ft_lstnew.c ft_lstdelone.c\
 			ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_abs.c\
-			get_next_line.c get_next_line_var.c ft_numlen.c ft_dubcheck.c\
+			get_next_line.c ft_numlen.c ft_dubcheck.c ft_strjoinfree.c\
 			ft_array_size.c ft_findchar.c wdmatch.c ft_array_grow.c\
 			free_array.c ft_array_shrink.c free_big_array.c new_array.c\
 			print_array.c ft_joinfree.c

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:33:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/20 11:36:53 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/27 10:12:08 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void	free_big_array(char ***array)
 	x = 0;
 	while (array[x])
 		x++;
-	while (x >= 0)
-	{
+	while (--x)
 		free_array(array[x], ft_array_size(array[x]));
-		x--;
-	}
 	free(array);
 }

@@ -6,16 +6,14 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 08:07:43 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/27 11:24:07 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 1
 # include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 
 typedef unsigned char	t_byte;
@@ -80,6 +78,8 @@ void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 /*
 ** Single dimensional array functions
 */
+
+char					*ft_strjoinfree(char *s1, char const *s2);
 
 char					*ft_joinfree(char *s1, char *s2);
 char					*ft_itoa(int n);

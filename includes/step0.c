@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 13:57:32 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/27 09:36:16 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ char	*room_changer(char *mod, char *old, size_t x)
 	char	*new;
 	size_t	i;
 
-	if (!(new = (char*)malloc(ft_strlen(old) + ft_strlen(mod) + 3)))
+	if (!(new = (char*)malloc(ft_strlen(old) + ft_strlen(mod) + 4)))
 		return (NULL);
-//	printf("\n||| %lu |||\n", ft_strlen(mod)+ ft_strlen(old));
 	i = 0;
 	while (old[x])
 	{
@@ -31,14 +30,9 @@ char	*room_changer(char *mod, char *old, size_t x)
 	new[i++] = 'l';
 	new[i++] = '-';
 	x = 0;
-//	if (ft_strcmp(mod, "0") == 0)
-//		printf("True %s\n", mod);
 	while (mod[x])
-	{
 		new[i++] = mod[x++];
-	}
 	new[i] = '\0';
-//	printf("\n%s\n", new);
 	free(old);
 	return (new);
 }

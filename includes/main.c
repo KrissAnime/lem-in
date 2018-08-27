@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 10:43:27 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/27 13:02:03 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ t_ant		*init(void)
 
 	if (!(ant = (t_ant*)malloc(sizeof(t_ant))))
 		return (NULL);
-	if (!(ant->links = (char**)malloc(sizeof(char*) * 1))
-			|| !(ant->rooms = (char**)malloc(sizeof(char*) * 1))
-			|| !(ant->path = (char**)malloc(sizeof(char*) * 1)))
+	if (!(ant->links = (char**)malloc(sizeof(char*)))
+			|| !(ant->rooms = (char**)malloc(sizeof(char*)))
+			|| !(ant->path = (char**)malloc(sizeof(char*))))
 		return (NULL);
-	if (!(ant->test = (char***)malloc(sizeof(char**) * 1))
-			|| !(ant->pos = (char***)malloc(sizeof(char**) * 1)))
+	if (!(ant->test = (char***)malloc(sizeof(char**)))
+			|| !(ant->pos = (char***)malloc(sizeof(char**))))
 		return (NULL);
 	ant->links[0] = NULL;
 	ant->rooms[0] = NULL;
@@ -48,6 +48,7 @@ int	main(void)
 	t_ant	*ant;
 	size_t	x;
 
+//	atexit(report_mem_leak);
 	ant = init();
 	x = 0;
 	if (!read_map(&ant))

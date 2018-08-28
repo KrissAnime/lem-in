@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 10:40:36 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 09:20:08 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct	s_ant
 	size_t		ants;
 	size_t		msize;
 	size_t		lsize;
+	size_t		csize;
+	size_t		psize;
 	char		**links;
 	char		**rooms;
 	char		**path;
@@ -54,7 +56,13 @@ char			***test_build(t_ant **ant);
 
 char			**destroyer(t_ant **ant, char **curr, size_t target);
 char			**builder(t_ant **ant, char **curr, char *line);
+
 char			**build_link(t_ant **ant, char **curr, char *line);
+
+char			**build_pos(t_ant **ant, char **curr, char *line);
+
+char			**break_path(t_ant **ant, char **curr);
+char			**build_path(t_ant **ant, char **curr, char *line);
 
 char			*room_changer(char *mod, char *old, size_t x);
 char			*get_name(t_ant **ant, size_t i);

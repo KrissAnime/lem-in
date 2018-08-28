@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 10:27:11 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 11:32:57 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,23 @@ char		***test_build(t_ant **ant)
 	return (new);
 }
 
-size_t		real_room(t_ant **ant, size_t x, size_t y)
+static size_t	dub(t_ant **ant, size_t x, size_t y)
+{
+	while ((*ant)->rooms[x])
+	{
+		y = x + 1;
+		while ((*ant)->rooms[y])
+		{
+			if (ft_strequ((*ant)->rooms[x], (*ant)->rooms[y]))
+				return (FAIL);
+			y++;
+		}
+		x++;
+	}
+	return (PASS);
+}
+
+size_t			real_room(t_ant **ant, size_t x, size_t y)
 {
 	size_t	z;
 
@@ -85,5 +101,5 @@ size_t		real_room(t_ant **ant, size_t x, size_t y)
 		x++;
 	}
 	loc_scrap(ant);
-	return (PASS);
+	return (dub(ant, 0, 0));
 }

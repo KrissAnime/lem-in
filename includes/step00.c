@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 08:54:33 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 09:50:05 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ size_t	newend(t_ant **ant, size_t loc, size_t x, size_t y)
 		{
 			if (ft_strequ((*ant)->pos[loc][y], (*ant)->pos[(*ant)->edin][x]))
 			{
-				(*ant)->path = ft_array_grow((*ant)->path,
+				(*ant)->path = build_path(ant, (*ant)->path,
 						(*ant)->pos[(*ant)->edin][x]);
-				(*ant)->path = ft_array_grow((*ant)->path,
+				(*ant)->path = build_path(ant, (*ant)->path,
 						(*ant)->pos[(*ant)->edin][0]);
 				return (1);
 			}

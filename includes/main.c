@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 13:02:03 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 10:27:43 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_ant		*init(void)
 	ant->pos[0] = NULL;
 	ant->msize = 1;
 	ant->lsize = 1;
+	ant->psize = 2;
 	ant->ants = 0;
 	ant->num = 0;
 	return (ant);
@@ -59,6 +60,7 @@ int	main(void)
 		return (fail(&ant, 2));
 	free_big_array(ant->test);
 	find_links(&ant, 1, ant->stin, ant->edin);
+	x = 0;
 	final_task(&ant);
 	free_ant(&ant, 3);
 	free(ant);

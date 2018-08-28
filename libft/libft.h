@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 11:24:07 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 09:22:18 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int						get_next_line_var(const int fd, char **line,
 char					**new_array(char *first);
 char					**new_array_free(char *first);
 char					**ft_strsplit(char const *s, char c);
-char					**ft_array_grow(char **curr, char *line);
 char					**ft_array_shrink(char **cur);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 10:17:28 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 08:54:33 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,12 @@ char	**build_link(t_ant **ant, char **curr, char *line)
 		while (curr[x])
 		{
 			new[x] = ft_strdup(curr[x]);
+			free(curr[x]);
 			x++;
 		}
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
-	free_array(curr, ft_array_size(curr));
+	free(curr);
 	return (new);
 }

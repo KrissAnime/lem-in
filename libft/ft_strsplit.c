@@ -6,22 +6,11 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:12:18 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/24 09:49:56 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 11:50:56 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
-
-static void	ft_destroy(char **str, size_t i)
-{
-	while (i)
-	{
-		ft_strdel(&str[i]);
-		i--;
-	}
-	ft_strdel(str);
-}
 
 static int	ft_numsplit(char const *s, char c)
 {
@@ -59,7 +48,7 @@ static char	**ft_createsplit(char **str, char const *s, size_t i, char c)
 				x++;
 			if (!(str[i] = ft_strsub(s, j, x - j)))
 			{
-				ft_destroy(str, i);
+				free_array(str, i);
 				return (NULL);
 			}
 			i++;

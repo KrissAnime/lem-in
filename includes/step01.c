@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 09:05:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 12:08:34 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 13:24:02 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,13 @@ char	**break_path(t_ant **ant, char **curr)
 	x = 0;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->psize - 1)))
 		return (NULL);
-	if ((*ant)->psize > 2)
+	while (curr[x])
 	{
-		while (curr[x])
-		{
-			new[x] = ft_strdup(curr[x]);
-			free(curr[x]);
-			x++;
-		}
+		new[x] = ft_strdup(curr[x]);
+		x++;
 	}
 	new[x] = NULL;
-	free(curr);
+	free_array(curr, ft_array_size(curr));
 	(*ant)->psize--;
 	return (new);
 }
@@ -40,23 +36,25 @@ char	**build_path(t_ant **ant, char **curr, char *line)
 	char	**new;
 	size_t	x;
 
-	(*ant)->psize++;
 	x = 0;
+	(*ant)->psize++;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->psize)))
 		return (NULL);
 	while (curr[x])
 	{
 		new[x] = ft_strdup(curr[x]);
-		free(curr[x]);
+		ft_strdel(&curr[x]);
 		x++;
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
+	free(*curr);
 	free(curr);
+//	free_array(curr, ft_array_size(curr));
 	return (new);
 }
 
-char	**build_pos(t_ant **ant, char **curr, char *line)
+char	**build_pos(t_ant **ant, char **curr, char **line)
 {
 	char	**new;
 	size_t	x;
@@ -68,12 +66,16 @@ char	**build_pos(t_ant **ant, char **curr, char *line)
 	while (curr[x])
 	{
 		new[x] = ft_strdup(curr[x]);
-		free(curr[x]);
+		ft_strdel(&curr[x]);
 		x++;
 	}
-	new[x++] = ft_strdup(line);
+	new[x++] = ft_strdup((*line));
 	new[x] = NULL;
+	free(*curr);
 	free(curr);
+	ft_strdel(line);
+//	free(*line);
+//	free_array(curr, ft_array_size(curr));
 	return (new);
 }
 

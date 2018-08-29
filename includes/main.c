@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 12:05:51 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 13:23:30 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ t_ant			*init(void)
 	ant->pos[0] = NULL;
 	ant->msize = 1;
 	ant->lsize = 1;
-	ant->psize = 2;
+	ant->psize = 1;
 	ant->ants = 0;
 	ant->num = 0;
 	return (ant);
 }
 
-static size_t	fail(t_ant **ant, size_t level)
+/*static size_t	fail(t_ant **ant, size_t level)
 {
 	ft_putendl("Bad map");
 	free_ant(ant, level);
 	return (0);
-}
+}*/
 
 int				main(void)
 {
@@ -53,11 +53,11 @@ int				main(void)
 	ant = init();
 	x = 0;
 	if (!read_map(&ant))
-		return (fail(&ant, 0));
+		exit(0);
 	if (!real_room(&ant, 0, 1))
-		return (fail(&ant, 1));
+		exit(0);
 	if (!check_path(&ant))
-		return (fail(&ant, 2));
+		exit(0);
 	free_big_array(ant->test);
 	find_links(&ant, 1, ant->stin, ant->edin);
 	x = 0;

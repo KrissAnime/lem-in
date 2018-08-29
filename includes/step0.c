@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 09:44:46 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 13:05:45 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,9 @@ size_t	room_format(char *line, size_t i)
 		free(val);
 		i++;
 	}
-	if (i != 3)
-	{
-		free_array(test, ft_array_size(test));
-		return (FAIL);
-	}
 	free_array(test, ft_array_size(test));
+	if (i != 3)
+		return (FAIL);
 	return (PASS);
 }
 
@@ -92,16 +89,14 @@ char	**builder(t_ant **ant, char **curr, char *line)
 	x = 0;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->msize)))
 		return (NULL);
-	if ((*ant)->msize > 2)
+	while (curr[x])
 	{
-		while (curr[x])
-		{
-			new[x] = ft_strdup(curr[x]);
-			x++;
-		}
+		new[x] = ft_strdup(curr[x]);
+		x++;
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
+//	free(line);
 	free_array(curr, ft_array_size(curr));
 	return (new);
 }

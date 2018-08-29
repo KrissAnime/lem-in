@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 09:33:33 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 12:46:54 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char			**builder(t_ant **ant, char **curr, char *line);
 
 char			**build_link(t_ant **ant, char **curr, char *line);
 
-char			**build_pos(t_ant **ant, char **curr, char *line);
+char			**build_pos(t_ant **ant, char **curr, char **line);
 
 char			**break_path(t_ant **ant, char **curr);
 char			**build_path(t_ant **ant, char **curr, char *line);
@@ -73,8 +73,8 @@ char			*room_name(char *s);
 size_t			compare_name(char *test, char *test2, char *name);
 
 int				read_room(t_ant **ant, char *line, size_t room);
-int				map_handler(t_ant **ant, char *line, size_t x);
-int				get_ants(char *line, t_ant **ant, size_t i);
+int				map_handler(t_ant **ant, char **line, size_t x);
+int				get_ants(char **line, t_ant **ant, size_t i);
 int				read_map(t_ant **ant);
 
 int				has_link(char *link, char *name);
@@ -88,7 +88,7 @@ size_t			newend(t_ant **ant, size_t loc, size_t x, size_t y);
 size_t			isitover(t_ant **ant);
 
 size_t			check_link(char *line, size_t i, size_t k, t_ant **ant);
-size_t			line_check(char *line, t_ant **ant);
+size_t			line_check(char **line, t_ant **ant);
 
 size_t			room_format(char *line, size_t i);
 size_t			real_room(t_ant **ant, size_t x, size_t y);

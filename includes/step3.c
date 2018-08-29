@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 06:32:04 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 12:09:52 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:36:43 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		real_link(t_ant **ant, char *name, size_t x)
 			(*ant)->num++;
 		x++;
 	}
-	if((*ant)->num == 0)
+	if ((*ant)->num == 0)
 		return (NO_LINK);
 	return (IS_LINK);
 }

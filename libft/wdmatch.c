@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 08:58:28 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/17 09:47:09 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:50:16 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ size_t	wdmatch(const char *demons, char *heroes)
 		if (demons[demon_hunter] == heroes[crusader])
 		{
 			monk = demon_hunter;
-				while (demons[demon_hunter] == heroes[crusader])
-				{
-					demon_hunter++;
-					crusader++;
-				}
+			while (demons[demon_hunter] == heroes[crusader])
+			{
+				demon_hunter++;
+				crusader++;
+			}
 			if (crusader == ft_strlen(heroes))
 				return (monk);
 		}

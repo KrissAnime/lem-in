@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 12:06:23 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:47:27 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	marching(t_ant **ant, size_t x)
 	}
 }
 
-void		final_task(t_ant **ant)
+void	final_task(t_ant **ant)
 {
 	size_t	i;
 	size_t	x;

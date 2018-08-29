@@ -6,13 +6,13 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 11:32:57 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:36:09 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-void		edit_sted(t_ant **ant, size_t x)
+void			edit_sted(t_ant **ant, size_t x)
 {
 	if ((*ant)->stin > x)
 		(*ant)->stin--;
@@ -20,7 +20,7 @@ void		edit_sted(t_ant **ant, size_t x)
 		(*ant)->edin--;
 }
 
-static void	loc_scrap(t_ant **ant)
+static void		loc_scrap(t_ant **ant)
 {
 	size_t	x;
 	size_t	y;
@@ -40,7 +40,7 @@ static void	loc_scrap(t_ant **ant)
 	}
 }
 
-char		***test_build(t_ant **ant)
+char			***test_build(t_ant **ant)
 {
 	size_t	x;
 	size_t	t;

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 12:11:29 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:46:03 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 size_t	line_check(char *line, t_ant **ant)
 {
-
 	if (ft_strequ(line, "##start"))
 		return (START);
 	else if (ft_strequ(line, "##end"))
@@ -27,7 +26,7 @@ size_t	line_check(char *line, t_ant **ant)
 		return (COMMENT);
 	else if (line[0] == '#' && line[1] == '#')
 		return (COMMENT);
-	else if (room_format(line, 0))
+	else if (room_format(line, 1))
 		return (ROOM);
 	else if (check_link(line, 0, 0, ant))
 		return (LINK);
@@ -39,7 +38,7 @@ size_t	line_check(char *line, t_ant **ant)
 **	move
 */
 
-int	get_ants(char *line, t_ant **ant, size_t i)
+int		get_ants(char *line, t_ant **ant, size_t i)
 {
 	char	*num;
 	int		size;
@@ -47,8 +46,10 @@ int	get_ants(char *line, t_ant **ant, size_t i)
 	while (line[i])
 	{
 		if (!ft_isdigit(line[i++]))
+		{
 			free(line);
 			return (FAIL);
+		}
 	}
 	size = ft_atoi(line);
 	num = ft_itoa(size);
@@ -68,16 +69,16 @@ int	get_ants(char *line, t_ant **ant, size_t i)
 **	2D array
 */
 
-int	read_room(t_ant **ant, char *line, size_t room)
+int		read_room(t_ant **ant, char *line, size_t room)
 {
 	get_next_line(0, &line);
-	if (room == 0 && room_format(line, 0))
+	if (room == 0 && room_format(line, 1))
 	{
 		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, line)))
 			return (FAIL);
 		(*ant)->stin = (*ant)->msize - 2;
 	}
-	else if (room == 1 && room_format(line, 0))
+	else if (room == 1 && room_format(line, 1))
 	{
 		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, line)))
 			return (FAIL);
@@ -86,7 +87,7 @@ int	read_room(t_ant **ant, char *line, size_t room)
 	return (PASS);
 }
 
-int	map_handler(t_ant **ant, char *line, size_t x)
+int		map_handler(t_ant **ant, char *line, size_t x)
 {
 	if (x == START && !read_room(ant, line, 0))
 		return (FAIL);
@@ -109,7 +110,7 @@ int	map_handler(t_ant **ant, char *line, size_t x)
 	return (PASS);
 }
 
-int	read_map(t_ant **ant)
+int		read_map(t_ant **ant)
 {
 	char	*line;
 	size_t	x;
@@ -118,8 +119,7 @@ int	read_map(t_ant **ant)
 
 	line = NULL;
 	k = 0;
-	if (get_next_line(0, &line) <= 0)
-		return (FAIL);
+	get_next_line(0, &line);
 	if (!(get_ants(line, ant, 0)))
 		return (FAIL);
 	while (get_next_line(0, &line))

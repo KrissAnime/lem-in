@@ -3,104 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swilson <swilson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/24 09:15:46 by swilson           #+#    #+#             */
-/*   Updated: 2018/08/25 11:46:07 by swilson          ###   ########.fr       */
+/*   Created: 2018/08/29 09:52:53 by cbester           #+#    #+#             */
+/*   Updated: 2018/08/29 10:22:47 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include "get_next_line.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-static char		*line_and_adjust_str(char *str, t_list *curr_node)
+static char		*line_ret(char *str, t_list *file)
 {
-	int		i;
-	int		len;
+	size_t	x;
+	size_t	len;
 	char	*ret;
 	char	*temp;
 
-	i = 0;
+	x = 0;
 	len = ft_strlen(str);
-	while (str[i] && str[i] != '\n')
-		i++;
-	ret = ft_strsub(str, 0, i);
-	if (!str[i] || (str[i] && !str[i + 1]))
+	while (str[x] && str[x] != '\n')
+		x++;
+	ret = ft_strsub(str, 0, x);
+	if (!str[x] || (str[x] && !str[x + 1]))
 	{
 		ft_strdel(&str);
-		curr_node->STRING = str;
+		file->content = str;
 		return (ret);
 	}
 	temp = str;
-	str = ft_strdup(str + i + 1);
+	str = ft_strdup(str + x + 1);
 	free(temp);
-	curr_node->STRING = str;
+	file->content = str;
 	return (ret);
 }
 
-static t_list	*find_fd_str(const int fd, t_list **list)
+static t_list	*find_file(const int fd, t_list **list)
 {
-	t_list		*curr_node;
+	t_list	*file;
 
-	curr_node = *list;
-	while (curr_node)
+	file = *list;
+	while (file)
 	{
-		if ((int)curr_node->FD == fd)
-			return (curr_node);
-		curr_node = curr_node->next;
+		if ((int)file->content_size == fd)
+			return (file);
+		file = file->next;
 	}
-	curr_node = ft_lstnew(0, fd);
-	curr_node->STRING = ft_strnew(0);
-	curr_node->FD = fd;
-	ft_lstadd(list, curr_node);
-	return (curr_node);
+	file = ft_lstnew(0, fd);
+	file->content = ft_strnew(0);
+	file->content_size = fd;
+	ft_lstadd(list, file);
+	return (file);
 }
 
-int				gnl_read(const int fd, char **str)
+size_t			read_file(const int fd, char **str)
 {
-	int		read_ret;
-	char	buffstr[BUFF_SIZE + 1];
+	int		ret;
+	char	buff[BUFF_SIZE + 1];
 
 	while (!(ft_strchr(*str, '\n')))
 	{
-		read_ret = read(fd, buffstr, BUFF_SIZE);
-		if (read_ret == -1)
-			return (-1);
-		buffstr[read_ret] = '\0';
-		*str = ft_strjoinfree(*str, buffstr);
-		if (read_ret == 0)
+		ret = read(fd, buff, BUFF_SIZE);
+		if (ret == -1)
+			return (ERROR);
+		buff[ret] = '\0';
+		*str = ft_strjoinfree(*str, buff);
+		if (ret == 0)
 		{
 			if (**str == '\0')
 			{
 				free(*str);
 				*str = NULL;
-				return (0);
+				return (DONE);
 			}
 			break ;
 		}
 	}
-	return (1);
+	return (READ);
 }
 
 int				get_next_line(const int fd, char **line)
 {
-	static t_list	*listhold;
-	t_list			*curr_node;
+	static t_list	*files;
+	t_list			*file;
 	char			*str;
-	int				gnl_read_ret;
+	size_t			ret;
 
-	if (BUFF_SIZE <= 0 || !line || (fd < -1))
-		return (-1);
-	curr_node = find_fd_str(fd, &listhold);
-	str = curr_node->STRING;
+	if (BUFF_SIZE <= 0 || !line || fd < -1)
+		return (ERROR);
+	file = find_file(fd, &files);
+	str = file->content;
 	if (!str)
 		str = ft_strnew(0);
-	gnl_read_ret = gnl_read(fd, &str);
-	if (gnl_read_ret != 1)
-		return (gnl_read_ret);
-	*line = line_and_adjust_str(str, curr_node);
-	return (1);
+	ret = read_file(fd, &str);
+	if (ret != 1)
+		return (ret);
+	*line = line_ret(str, file);
+	return (READ);
 }

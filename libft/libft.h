@@ -6,12 +6,13 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 09:22:18 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/29 10:13:33 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 1
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -25,6 +26,12 @@ typedef struct			s_list
 	struct s_list		*next;
 }						t_list;
 
+enum	e_gnl
+{
+	ERROR = -1,
+	DONE = 0,
+	READ = 1,
+};
 
 /*
 ** 3-D array manipulation

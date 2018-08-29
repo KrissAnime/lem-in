@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 10:06:18 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 12:08:48 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ static void	create_possibilities(t_ant **ant, size_t x, size_t y)
 			{
 				temp = get_link((*ant)->links[x], 0, 1);
 				(*ant)->pos[y] = build_pos(ant, (*ant)->pos[y], temp);
+				free(temp);
 			}
 			else if (has_link2((*ant)->links[x], (*ant)->pos[y][0]))
 			{

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 06:32:04 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/27 09:30:43 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 12:09:52 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int		real_link(t_ant **ant, char *name, size_t x)
 	(*ant)->num = 0;
 	while ((*ant)->links[x])
 	{
-		if (has_link((*ant)->links[x], name) || has_link2((*ant)->links[x], name))
+		if (has_link((*ant)->links[x], name)
+				|| has_link2((*ant)->links[x], name))
 			(*ant)->num++;
 		x++;
 	}

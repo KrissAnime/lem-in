@@ -6,13 +6,13 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 10:27:43 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 12:05:51 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-t_ant		*init(void)
+t_ant			*init(void)
 {
 	t_ant	*ant;
 
@@ -40,16 +40,16 @@ t_ant		*init(void)
 
 static size_t	fail(t_ant **ant, size_t level)
 {
+	ft_putendl("Bad map");
 	free_ant(ant, level);
 	return (0);
 }
 
-int	main(void)
+int				main(void)
 {
 	t_ant	*ant;
 	size_t	x;
 
-//	atexit(report_mem_leak);
 	ant = init();
 	x = 0;
 	if (!read_map(&ant))

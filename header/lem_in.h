@@ -6,12 +6,12 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 09:20:08 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 12:05:32 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	LEM_IN_H
-# define	LEM_IN_H
+# define LEM_IN_H
 # include "../libft/libft.h"
 
 enum	e_ant
@@ -48,7 +48,6 @@ typedef struct	s_ant
 
 t_ant			*init(void);
 
-
 void			move_end(t_ant **ant, size_t x, size_t k);
 void			move_start(t_ant **ant, size_t x, size_t k);
 
@@ -66,7 +65,7 @@ char			**build_path(t_ant **ant, char **curr, char *line);
 
 char			*room_changer(char *mod, char *old, size_t x);
 char			*get_name(t_ant **ant, size_t i);
-char			*get_link(char *link, size_t, size_t code);
+char			*get_link(char *link, size_t x, size_t code);
 char			*pass(char *room);
 char			*change(char *s, char b);
 

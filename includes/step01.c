@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 09:05:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 10:06:43 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 12:08:34 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**break_path(t_ant **ant, char **curr)
 		return (NULL);
 	if ((*ant)->psize > 2)
 	{
-		while(curr[x])
+		while (curr[x])
 		{
 			new[x] = ft_strdup(curr[x]);
 			free(curr[x]);
@@ -44,7 +44,7 @@ char	**build_path(t_ant **ant, char **curr, char *line)
 	x = 0;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->psize)))
 		return (NULL);
-	while(curr[x])
+	while (curr[x])
 	{
 		new[x] = ft_strdup(curr[x]);
 		free(curr[x]);
@@ -65,7 +65,7 @@ char	**build_pos(t_ant **ant, char **curr, char *line)
 	x = 0;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->csize)))
 		return (NULL);
-	while(curr[x])
+	while (curr[x])
 	{
 		new[x] = ft_strdup(curr[x]);
 		free(curr[x]);
@@ -73,7 +73,6 @@ char	**build_pos(t_ant **ant, char **curr, char *line)
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
-//	free(line);
 	free(curr);
 	return (new);
 }

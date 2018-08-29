@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/28 11:25:28 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/28 12:11:29 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ int	get_ants(char *line, t_ant **ant, size_t i)
 	while (line[i])
 	{
 		if (!ft_isdigit(line[i++]))
+			free(line);
 			return (FAIL);
 	}
 	size = ft_atoi(line);
 	num = ft_itoa(size);
 	if (!ft_strequ(line, num) || size <= 0)
 	{
+		free(line);
 		free(num);
 		return (FAIL);
 	}
@@ -116,23 +118,21 @@ int	read_map(t_ant **ant)
 
 	line = NULL;
 	k = 0;
-	get_next_line(0, &line);
-	if (!(get_ants(line, ant, 0)))
-	{
-		free(line);
+	if (get_next_line(0, &line) <= 0)
 		return (FAIL);
-	}
+	if (!(get_ants(line, ant, 0)))
+		return (FAIL);
 	while (get_next_line(0, &line))
 	{
 		k++;
 		x = line_check(line, ant);
 		ret = map_handler(ant, line, x);
-		if (ret == FAIL && k < 5)
+		if (ret == FAIL && k < 4)
 		{
 			free(line);
 			return (FAIL);
 		}
-		else if (ret == FAIL && k >= 5)
+		else if (ret == FAIL && k >= 4)
 			break ;
 	}
 	free(line);

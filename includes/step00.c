@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 09:46:52 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 10:09:56 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,16 @@ char	**build_link(t_ant **ant, char **curr, char *line)
 	x = 0;
 	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->lsize)))
 		return (NULL);
-	if ((*ant)->lsize > 2)
+	while (curr[x])
 	{
-		while (curr[x])
-		{
-			new[x] = ft_strdup(curr[x]);
-			free(curr[x]);
-			x++;
-		}
+		new[x] = ft_strdup(curr[x]);
+//		free(curr[x]);
+		x++;
 	}
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
-	free(curr);
+//	free(*curr);
+//	free(curr);
+	free_array(curr, ft_array_size(curr));
 	return (new);
 }

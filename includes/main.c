@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 13:23:30 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 11:01:49 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ t_ant			*init(void)
 
 	if (!(ant = (t_ant*)malloc(sizeof(t_ant))))
 		return (NULL);
-	if (!(ant->links = (char**)malloc(sizeof(char*)))
-			|| !(ant->rooms = (char**)malloc(sizeof(char*)))
-			|| !(ant->path = (char**)malloc(sizeof(char*))))
+	if (!(ant->links = (char**)malloc(sizeof(char*) * 1))
+			|| !(ant->rooms = (char**)malloc(sizeof(char*) * 1))
+			|| !(ant->path = (char**)malloc(sizeof(char*) * 1)))
 		return (NULL);
-	if (!(ant->test = (char***)malloc(sizeof(char**)))
-			|| !(ant->pos = (char***)malloc(sizeof(char**))))
+	if (!(ant->test = (char***)malloc(sizeof(char**) * 1))
+			|| !(ant->pos = (char***)malloc(sizeof(char**) * 1)))
 		return (NULL);
 	ant->links[0] = NULL;
 	ant->rooms[0] = NULL;
@@ -58,7 +58,7 @@ int				main(void)
 		exit(0);
 	if (!check_path(&ant))
 		exit(0);
-	free_big_array(ant->test);
+//	free_big_array(ant->test);
 	find_links(&ant, 1, ant->stin, ant->edin);
 	x = 0;
 	final_task(&ant);

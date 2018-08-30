@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 09:36:09 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 11:16:12 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char			***test_build(t_ant **ant)
 {
 	size_t	x;
 	size_t	t;
+
 	char	***new;
 
 	x = 0;
@@ -54,12 +55,11 @@ char			***test_build(t_ant **ant)
 		return (NULL);
 	while ((*ant)->rooms[x])
 	{
-		new[x] = ft_strsplit((*ant)->rooms[x], ' ');
+		if (!(new[x] = ft_strsplit((*ant)->rooms[x], ' ')))
+			free_big_array(new);
 		x++;
 	}
 	new[x] = NULL;
-	if ((*ant)->test[0] == NULL)
-		free((*ant)->test);
 	return (new);
 }
 
@@ -86,20 +86,23 @@ size_t			real_room(t_ant **ant, size_t x, size_t y)
 	(*ant)->test = test_build(ant);
 	while ((*ant)->test[x])
 	{
-		y = 1;
-		while ((*ant)->test[x][y])
+		y = 0;
+		while ((*ant)->test[x][++y])
 		{
 			z = 0;
 			while ((*ant)->test[x][y][z])
 			{
 				if (!ft_isdigit((*ant)->test[x][y][z]))
+				{
+					free_big_array((*ant)->test);
 					return (FAIL);
+				}
 				z++;
 			}
-			y++;
 		}
 		x++;
 	}
+	free_big_array((*ant)->test);
 	loc_scrap(ant);
 	return (dub(ant, 0, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 06:32:04 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 09:36:43 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 10:04:51 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int		check_path(t_ant **ant)
 		if ((real_link(ant, (*ant)->rooms[x], 0)) == NO_LINK)
 		{
 			if ((*ant)->stin == x || (*ant)->edin == x)
+			{
+				ft_putendl("No link to end or beginning!");
 				return (FAIL);
+			}
 			(*ant)->rooms = destroyer(ant, (*ant)->rooms, x);
 		}
 		else

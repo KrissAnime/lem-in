@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 13:04:28 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 10:11:19 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		get_ants(char **line, t_ant **ant, size_t i)
 
 int		read_room(t_ant **ant, char *line, size_t room)
 {
-	free(line);
+	ft_strdel(&line);
 	get_next_line(0, &line);
 	if (room == 0 && room_format(line, 1))
 	{
@@ -91,7 +91,7 @@ int		read_room(t_ant **ant, char *line, size_t room)
 		}
 		(*ant)->edin = (*ant)->msize - 2;
 	}
-	free(line);
+	ft_strdel(&line);
 	return (PASS);
 }
 
@@ -141,6 +141,6 @@ int		read_map(t_ant **ant)
 		if (ret == FAIL && k >= 4)
 			break ;
 	}
-	free(line);
+	ft_strdel(&line);
 	return (PASS);
 }

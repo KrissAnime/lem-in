@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 14:01:49 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:04:31 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		loc_scrap(t_ant **ant)
 		t = ft_strsub((*ant)->rooms[x], 0, y);
 		free((*ant)->rooms[x]);
 		(*ant)->rooms[x] = ft_strdup(t);
-		free(t);
+		ft_strdel(&t);
 		x++;
 	}
 }

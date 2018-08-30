@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 13:58:18 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:34:52 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,19 @@ int				main(void)
 	x = 0;
 	if (!read_map(&ant))
 		exit(0);
+	//sleep(5);
+	ft_putendl("MAP SUCCESS");
 	if (!real_room(&ant, 0, 0))
 		exit(0);
+	ft_putendl("REAL SUCCESS");
 	if (!check_path(&ant))
 		exit(0);
-//	free_big_array(ant->test);
+	ft_putendl("PATH SUCCESS");
 	find_links(&ant, 1, ant->stin, ant->edin);
+	ft_putendl("MAP SUCCESS");
 	x = 0;
 	final_task(&ant);
+	ft_putendl("MAP SUCCESS");
 	free_ant(&ant, 3);
 	free(ant);
 	return (0);

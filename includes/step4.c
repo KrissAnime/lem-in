@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 13:55:52 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:41:04 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,18 @@ size_t			next_room(t_ant **ant, size_t loc)
 static void		create_possibilities(t_ant **ant, size_t x, size_t y)
 {
 	char	*temp;
-
+	
+	ft_putendl("pos");
+	ft_putnbr((*ant)->msize);
+	ft_putendl("");
 	while (y < (*ant)->msize - 1)
 	{
+		ft_putnbr(y);
+		ft_putendl("");
 		(*ant)->pos[y] = new_array_free(get_name(ant, y));
+		ft_putendl("");
+		ft_putnbr(y);
+		ft_putendl("");
 		x = -1;
 		(*ant)->csize = 2;
 		while ((*ant)->links[++x])
@@ -109,7 +117,9 @@ static void		create_possibilities(t_ant **ant, size_t x, size_t y)
 
 void			find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 {
+	ft_putendl("test");
 	create_possibilities(ant, 0, 0);
+	ft_putendl("test");
 	while (1)
 	{
 		x = 1;

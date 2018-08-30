@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 13:53:08 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:24:37 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int		read_map(t_ant **ant)
 		return (FAIL);
 	if (!(get_ants(&line, ant, 0)))
 		return (FAIL);
-	free(line);
+	ft_strdel(&line);
 	while (get_next_line(0, &line))
 	{
 		k++;
@@ -141,7 +141,9 @@ int		read_map(t_ant **ant)
 			return (FAIL);
 		if (ret == FAIL && k >= 4)
 			break ;
+		if (x != START && x != END)
+			ft_strdel(&line);
 	}
-	ft_strdel(&line);
+//	ft_strdel(&line);
 	return (PASS);
 }

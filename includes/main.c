@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 11:01:49 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:58:18 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ t_ant			*init(void)
 			|| !(ant->rooms = (char**)malloc(sizeof(char*) * 1))
 			|| !(ant->path = (char**)malloc(sizeof(char*) * 1)))
 		return (NULL);
-	if (!(ant->test = (char***)malloc(sizeof(char**) * 1))
-			|| !(ant->pos = (char***)malloc(sizeof(char**) * 1)))
+	if (!(ant->pos = (char***)malloc(sizeof(char**) * 1)))
 		return (NULL);
 	ant->links[0] = NULL;
 	ant->rooms[0] = NULL;
 	ant->path[0] = NULL;
-	ant->test[0] = NULL;
 	ant->pos[0] = NULL;
 	ant->msize = 1;
 	ant->lsize = 1;
@@ -54,7 +52,7 @@ int				main(void)
 	x = 0;
 	if (!read_map(&ant))
 		exit(0);
-	if (!real_room(&ant, 0, 1))
+	if (!real_room(&ant, 0, 0))
 		exit(0);
 	if (!check_path(&ant))
 		exit(0);

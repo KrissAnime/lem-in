@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 11:16:12 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/30 14:01:49 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,6 @@ static void		loc_scrap(t_ant **ant)
 	}
 }
 
-char			***test_build(t_ant **ant)
-{
-	size_t	x;
-	size_t	t;
-
-	char	***new;
-
-	x = 0;
-	t = 0;
-	while ((*ant)->rooms[t])
-		t++;
-	if (!(new = (char***)malloc(sizeof(char**) * t + 1)))
-		return (NULL);
-	while ((*ant)->rooms[x])
-	{
-		if (!(new[x] = ft_strsplit((*ant)->rooms[x], ' ')))
-			free_big_array(new);
-		x++;
-	}
-	new[x] = NULL;
-	return (new);
-}
-
 static size_t	dub(t_ant **ant, size_t x, size_t y)
 {
 	while ((*ant)->rooms[x])
@@ -81,28 +58,16 @@ static size_t	dub(t_ant **ant, size_t x, size_t y)
 
 size_t			real_room(t_ant **ant, size_t x, size_t y)
 {
-	size_t	z;
-
-	(*ant)->test = test_build(ant);
-	while ((*ant)->test[x])
+	while ((*ant)->rooms[x])
 	{
 		y = 0;
-		while ((*ant)->test[x][++y])
-		{
-			z = 0;
-			while ((*ant)->test[x][y][z])
-			{
-				if (!ft_isdigit((*ant)->test[x][y][z]))
-				{
-					free_big_array((*ant)->test);
-					return (FAIL);
-				}
-				z++;
-			}
-		}
+		while ((*ant)->rooms[x][y] != ' ' && (*ant)->rooms[x][y])
+			y++;
+		while ((*ant)->rooms[x][++y])
+			if (!ft_isdigit((*ant)->rooms[x][y]) && (*ant)->rooms[x][y] != ' ')
+				return (FAIL);
 		x++;
 	}
-	free_big_array((*ant)->test);
 	loc_scrap(ant);
 	return (dub(ant, 0, 0));
 }

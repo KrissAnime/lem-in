@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:43:14 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 14:18:36 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,12 @@ size_t			next_room(t_ant **ant, size_t loc)
 static void		create_possibilities(t_ant **ant, size_t x, size_t y, char **t2)
 {
 	char	*temp;
-	
-	while ((*ant)->rooms[y] && y < (*ant)->msize - 1)
+
+	while (++y < (*ant)->msize - 1)
 	{
 		(*ant)->pos[y] = new_array_free(get_name(ant, y));
 		x = -1;
 		(*ant)->csize = 2;
-//		print_array((*ant)->links, '\t', 1);
 		while ((*ant)->links[++x])
 		{
 			if (has_link((*ant)->links[x], (*ant)->pos[y][0]))
@@ -104,59 +103,35 @@ static void		create_possibilities(t_ant **ant, size_t x, size_t y, char **t2)
 				(*ant)->pos[y] = build_pos(ant, (*ant)->pos[y], &temp);
 				ft_strdel(&temp);
 			}
-	//		ft_putendl("links");
-	//		ft_putendl("loop x");
-	//		print_array((*ant)->pos[y], '\t', 1);
-	//		ft_putchar('\n');
 		}
-//		ft_putendl("loop y");
-//		print_array((*ant)->pos[y], '\t', 1);
-//		ft_putchar('\n');
-	//	ft_putendl("Other side");
-		y++;
 	}
 	(*ant)->pos[y] = NULL;
 	(*ant)->path = build_path(ant, (*ant)->path, (*ant)->pos[(*ant)->stin][0]);
 }
 
-size_t				find_links(t_ant **ant, size_t x, size_t loc, size_t e)
+size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 {
 	char	*temp2;
 	char	**test;
-//
-	ft_putendl("broken build?");
+
 	if (!(build(ant, &temp2)))
 		return (FAIL);
-//	ft_putendl("broken possiblities?");
-	create_possibilities(ant, 0, 0, &temp2);
-//	ft_putendl("working possiblities");
-//	printf("where is the end? %s\n", *(*ant)->pos[(*ant)->edin]);
+	create_possibilities(ant, 0, -1, &temp2);
 	test = NULL;
-//	ft_putendl("broken loop?");
 	while (1)
 	{
 		test = array_dup((*ant)->path);
-//		ft_putendl("Success test");
-		printf("%lu\t%lu\tpos: %s\n", (*ant)->msize, e, *(*ant)->pos[e]);
 		if (ft_strequ((*ant)->pos[loc][x], (*ant)->pos[e][0]))
 		{
 			(*ant)->path = build_path(ant, (*ant)->path, (*ant)->pos[e][0]);
 			break ;
 		}
-//		ft_putendl("Success end");
 		if (newend(ant, loc, 1, 1) == 1)
 			break ;
-//		ft_putendl("Success end link");
 		map(ant, 0, loc, ft_array_size((*ant)->path) - 1);
-//		ft_putendl("Success map");
 		loc = location(ant);
-//		ft_putendl("Success loc");
 		if (!(broken(test, (*ant)->path)))
 			return (FAIL);
-//		ft_putendl("Success breaker");
 	}
-//	ft_putendl("loop is fine");
-//	free_array2((*ant)->links, ft_array_size((*ant)->links));
-//	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	return (PASS);
 }

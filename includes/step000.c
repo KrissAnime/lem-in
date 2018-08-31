@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:29:01 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 14:16:27 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,11 @@ size_t	broken(char **a, char **b)
 		if (!ft_strequ(a[x], b[x]))
 		{
 			free_array(a, ft_array_size(a));
-		//	a = NULL;
 			return (PASS);
 		}
 		x++;
 	}
 	free_array(a, ft_array_size(a));
-//	a = NULL;
 	return (FAIL);
 }
 
@@ -91,14 +89,12 @@ void	final_task(t_ant **ant)
 	size_t	r;
 
 	x = 1;
-//	ft_putendl("Before the march");
 	if (!ft_strequ((*ant)->path[ft_array_size((*ant)->path) - 1],
 				(*ant)->pos[(*ant)->edin][0]))
 		return ;
 	i = (*ant)->ants;
 	r = ft_array_size((*ant)->path);
 	y = 1;
-//	ft_putendl("Bfore the march");
 	while (i)
 	{
 		marching(ant, x);

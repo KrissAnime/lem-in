@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:45:08 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 14:15:06 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static size_t	fail(t_ant **ant, char *s)
 {
 	ft_putendl(s);
 	free_ant(ant);
-	return (0);
+	exit(0);
 }
 
 static size_t	final_free(t_ant **ant, char *s)
@@ -43,21 +43,17 @@ static size_t	final_free(t_ant **ant, char *s)
 	size_t	x;
 
 	x = 0;
-//	ft_putendl("Here we are");
 	ft_putendl(s);
-//	printf("%lu\n", (*ant)->msize);
 	while (x < (*ant)->msize - 1 && (*ant)->pos[x])
 	{
-//		print_array((*ant)->pos[x], '\n', 1);
-//		ft_putchar('\n');
 		free_array((*ant)->pos[x], ft_array_size((*ant)->pos[x]));
 		x++;
 	}
 	free((*ant)->pos);
-//	free_array((*ant)->path, ft_array_size((*ant)->path));
 	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
-	return (0);
+	free(*ant);
+	exit(0);
 }
 
 int				main(void)
@@ -66,30 +62,20 @@ int				main(void)
 
 	ant = init();
 	if (!read_map(&ant))
-		return (fail(&ant, "Unable to read map"));
-	ft_putendl("Done reading");
+		fail(&ant, "Unable to read map");
 	if (!real_room(&ant, 0, 0))
-		return (fail(&ant, "Room error detected"));
-	ft_putendl("Done verifying");
+		fail(&ant, "Room error detected");
 	if (!check_path(&ant))
-		return (fail(&ant, "Path broken"));
-	ft_putendl("Done checking path");
+		fail(&ant, "Path broken");
 	if (!(ant->pos = (char***)malloc(sizeof(char**) * ant->msize)))
-		return (fail(&ant, "Possible route malloc fail"));
+		fail(&ant, "Possible route malloc fail");
 	ant->pos[0] = NULL;
-//	ft_putendl("Broken");
 	if (!find_links(&ant, 1, ant->stin, ant->edin))
 	{
 		(final_free(&ant, "Failed to connect to end"));
-		free(ant);
-		return (0);
+		exit(0);
 	}
-//	ft_putendl("Broken Task?");
 	final_task(&ant);
-//	ft_putendl("Broken Free?");
 	final_free(&ant, "Done");
-//	free_ant(&ant, 3);
-//	sleep(5);
-	free(ant);
-	return (0);
+	exit(0);
 }

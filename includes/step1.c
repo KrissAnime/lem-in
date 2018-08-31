@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 14:24:37 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 10:25:24 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,5 @@ int		read_map(t_ant **ant)
 		if (x != START && x != END)
 			ft_strdel(&line);
 	}
-//	ft_strdel(&line);
 	return (PASS);
 }

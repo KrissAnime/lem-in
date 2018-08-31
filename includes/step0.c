@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 10:27:06 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:27:24 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*room_changer(char *mod, char *old, size_t x)
 		i++;
 		x++;
 	}
+	free(old);
 	new[i++] = ' ';
 	new[i++] = 'l';
 	new[i++] = '-';
@@ -33,7 +34,6 @@ char	*room_changer(char *mod, char *old, size_t x)
 	while (mod[x])
 		new[i++] = mod[x++];
 	new[i] = '\0';
-	free(old);
 	return (new);
 }
 
@@ -75,7 +75,6 @@ size_t	room_format(char *line, size_t i)
 		i++;
 	}
 	free_array(test, ft_array_size(test));
-//	sleep(3);
 	if (i != 3)
 		return (FAIL);
 	return (PASS);
@@ -122,8 +121,8 @@ char	**destroyer(t_ant **ant, char **curr, size_t target)
 				new[x++] = ft_strdup(curr[y++]);
 		}
 	}
+	free_array(curr, ft_array_size(curr));
 	new[x] = NULL;
 	(*ant)->msize--;
-	free_array(curr, ft_array_size(curr));
 	return (new);
 }

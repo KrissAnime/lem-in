@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/21 08:58:42 by cbester           #+#    #+#              #
-#    Updated: 2018/08/28 09:22:02 by cbester          ###   ########.fr        #
+#    Updated: 2018/08/31 11:15:02 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ FUNCTIONS = ft_bzero.c ft_memalloc.c ft_memchr.c ft_memcpy.c ft_memccpy.c\
 			get_next_line.c ft_numlen.c ft_dubcheck.c ft_strjoinfree.c\
 			ft_array_size.c ft_findchar.c wdmatch.c free_array.c\
 			ft_array_shrink.c free_big_array.c new_array.c print_array.c\
-			ft_joinfree.c
+			ft_joinfree.c free_array2.c array_dup.c
 
 FILES = $(addprefix $(FILES_DIR), $(FUNCTIONS))
 OBJECTS = $(FILES:.c=.o)

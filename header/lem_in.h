@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/30 13:57:33 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 11:38:32 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ int				has_link2(char *link, char *name);
 int				real_link(t_ant **ant, char *name, size_t x);
 int				check_path(t_ant **ant);
 
+size_t			broken(char **a, char **b);
+size_t			build(t_ant **ant, char **temp);
+
 size_t			next_room(t_ant **ant, size_t loc);
 
 size_t			newend(t_ant **ant, size_t loc, size_t x, size_t y);
@@ -93,9 +96,9 @@ size_t			real_room(t_ant **ant, size_t x, size_t y);
 void			edit_sted(t_ant **ant, size_t x);
 void			final_task(t_ant **ant);
 
-void			find_links(t_ant **ant, size_t x, size_t loc, size_t e);
+size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e);
 
 void			free_array_2(char ***array, size_t x);
-void			free_ant(t_ant **ant, size_t level);
+void			free_ant(t_ant **ant);
 
 #endif

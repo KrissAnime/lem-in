@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/29 10:13:33 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 11:14:53 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define BUFF_SIZE 1
 # include <string.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 
 typedef unsigned char	t_byte;
@@ -44,6 +45,7 @@ void					free_big_array(char ***array);
 */
 
 void					free_array(char **array, size_t x);
+void					free_array2(char **array, size_t x);
 void					ft_bzero(void *s, size_t n);
 void					*ft_memalloc(size_t size);
 void					*ft_memchr(const void *s, int c, size_t n);
@@ -120,6 +122,7 @@ int						get_next_line_var(const int fd, char **line,
 ** 2-Dimensional array functions
 */
 
+char					**array_dup(char **s);
 char					**new_array(char *first);
 char					**new_array_free(char *first);
 char					**ft_strsplit(char const *s, char c);

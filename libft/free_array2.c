@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   free_array2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/17 11:33:57 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 07:58:08 by cbester          ###   ########.fr       */
+/*   Created: 2018/08/31 07:58:48 by cbester           #+#    #+#             */
+/*   Updated: 2018/08/31 10:02:15 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_array(char **array, size_t x)
+void	free_array2(char **array, size_t x)
 {
 	size_t	i;
 
@@ -20,6 +20,13 @@ void	free_array(char **array, size_t x)
 	if (!array)
 		return ;
 	while (i < x)
-		free(array[i++]);
+	{
+//		printf("link: %s\taddr before: %p\n", array[i], array[i]);
+		ft_strdel(&array[i]);
+//		printf("link: %s\taddr after: %p\n", array[i], array[i]);
+		i++;
+	}
+	free(*array);
 	free(array);
+//	printf("DONE\n");
 }

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   array_dup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/17 11:33:57 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 07:58:08 by cbester          ###   ########.fr       */
+/*   Created: 2018/08/31 11:02:06 by cbester           #+#    #+#             */
+/*   Updated: 2018/08/31 13:21:19 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_array(char **array, size_t x)
+char	**array_dup(char **s)
 {
-	size_t	i;
+	char	**ret;
+	size_t	x;
 
-	i = 0;
-	if (!array)
-		return ;
-	while (i < x)
-		free(array[i++]);
-	free(array);
+	if (!s)
+		return (NULL);
+	if (!(ret = (char**)malloc(sizeof(char*) * ft_array_size(s) + 1)))
+		return (NULL);
+	x = 0;
+	while (s[x])
+	{
+		ret[x] = ft_strdup(s[x]);
+		x++;
+	}
+	ret[x] = s[x];
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:19:31 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:43:14 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,13 @@ static void		create_possibilities(t_ant **ant, size_t x, size_t y, char **t2)
 				ft_strdel(&temp);
 			}
 	//		ft_putendl("links");
-			ft_putendl("loop 1");
-			print_array((*ant)->pos[y], '\t', 1);
-			ft_putchar('\n');
+	//		ft_putendl("loop x");
+	//		print_array((*ant)->pos[y], '\t', 1);
+	//		ft_putchar('\n');
 		}
-		print_array((*ant)->pos[y], '\t', 1);
-		ft_putchar('\n');
+//		ft_putendl("loop y");
+//		print_array((*ant)->pos[y], '\t', 1);
+//		ft_putchar('\n');
 	//	ft_putendl("Other side");
 		y++;
 	}
@@ -122,39 +123,39 @@ size_t				find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 {
 	char	*temp2;
 	char	**test;
-
+//
 	ft_putendl("broken build?");
 	if (!(build(ant, &temp2)))
 		return (FAIL);
-	ft_putendl("broken possiblities?");
+//	ft_putendl("broken possiblities?");
 	create_possibilities(ant, 0, 0, &temp2);
-	ft_putendl("working possiblities");
-	printf("where is the end? %s\n", *(*ant)->pos[(*ant)->edin]);
+//	ft_putendl("working possiblities");
+//	printf("where is the end? %s\n", *(*ant)->pos[(*ant)->edin]);
 	test = NULL;
-	ft_putendl("broken loop?");
+//	ft_putendl("broken loop?");
 	while (1)
 	{
 		test = array_dup((*ant)->path);
-		ft_putendl("Success test");
+//		ft_putendl("Success test");
 		printf("%lu\t%lu\tpos: %s\n", (*ant)->msize, e, *(*ant)->pos[e]);
 		if (ft_strequ((*ant)->pos[loc][x], (*ant)->pos[e][0]))
 		{
 			(*ant)->path = build_path(ant, (*ant)->path, (*ant)->pos[e][0]);
 			break ;
 		}
-		ft_putendl("Success end");
+//		ft_putendl("Success end");
 		if (newend(ant, loc, 1, 1) == 1)
 			break ;
-		ft_putendl("Success end link");
+//		ft_putendl("Success end link");
 		map(ant, 0, loc, ft_array_size((*ant)->path) - 1);
-		ft_putendl("Success map");
+//		ft_putendl("Success map");
 		loc = location(ant);
-		ft_putendl("Success loc");
+//		ft_putendl("Success loc");
 		if (!(broken(test, (*ant)->path)))
 			return (FAIL);
-		ft_putendl("Success breaker");
+//		ft_putendl("Success breaker");
 	}
-	ft_putendl("loop is fine");
+//	ft_putendl("loop is fine");
 //	free_array2((*ant)->links, ft_array_size((*ant)->links));
 //	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	return (PASS);

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:30:46 by cbester          ###   ########.fr       */
+/*   Updated: 2018/08/31 13:45:08 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static size_t	final_free(t_ant **ant, char *s)
 	}
 	free((*ant)->pos);
 //	free_array((*ant)->path, ft_array_size((*ant)->path));
-//	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
+	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
 	return (0);
 }
@@ -67,23 +67,26 @@ int				main(void)
 	ant = init();
 	if (!read_map(&ant))
 		return (fail(&ant, "Unable to read map"));
+	ft_putendl("Done reading");
 	if (!real_room(&ant, 0, 0))
 		return (fail(&ant, "Room error detected"));
+	ft_putendl("Done verifying");
 	if (!check_path(&ant))
 		return (fail(&ant, "Path broken"));
-	if (!(ant->pos = (char***)malloc(sizeof(char**))))
+	ft_putendl("Done checking path");
+	if (!(ant->pos = (char***)malloc(sizeof(char**) * ant->msize)))
 		return (fail(&ant, "Possible route malloc fail"));
 	ant->pos[0] = NULL;
-	ft_putendl("Broken");
+//	ft_putendl("Broken");
 	if (!find_links(&ant, 1, ant->stin, ant->edin))
 	{
 		(final_free(&ant, "Failed to connect to end"));
 		free(ant);
 		return (0);
 	}
-	ft_putendl("Broken Task?");
+//	ft_putendl("Broken Task?");
 	final_task(&ant);
-	ft_putendl("Broken Free?");
+//	ft_putendl("Broken Free?");
 	final_free(&ant, "Done");
 //	free_ant(&ant, 3);
 //	sleep(5);

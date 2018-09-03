@@ -6,36 +6,11 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:56:05 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:27:24 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:30:48 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
-
-char	*room_changer(char *mod, char *old, size_t x)
-{
-	char	*new;
-	size_t	i;
-
-	if (!(new = (char*)malloc(ft_strlen(old) + ft_strlen(mod) + 4)))
-		return (NULL);
-	i = 0;
-	while (old[x])
-	{
-		new[i] = old[x];
-		i++;
-		x++;
-	}
-	free(old);
-	new[i++] = ' ';
-	new[i++] = 'l';
-	new[i++] = '-';
-	x = 0;
-	while (mod[x])
-		new[i++] = mod[x++];
-	new[i] = '\0';
-	return (new);
-}
 
 size_t	check_link(char *line, size_t i, size_t k, t_ant **ant)
 {
@@ -74,9 +49,12 @@ size_t	room_format(char *line, size_t i)
 		free(val);
 		i++;
 	}
-	free_array(test, ft_array_size(test));
 	if (i != 3)
+	{
+		free_array(test, ft_array_size(test));
 		return (FAIL);
+	}
+	free_array(test, ft_array_size(test));
 	return (PASS);
 }
 
@@ -94,9 +72,9 @@ char	**builder(t_ant **ant, char **curr, char *line)
 		new[x] = ft_strdup(curr[x]);
 		x++;
 	}
+	free_array(curr, ft_array_size(curr));
 	new[x++] = ft_strdup(line);
 	new[x] = NULL;
-	free_array(curr, ft_array_size(curr));
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:12:18 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 13:24:03 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 09:02:31 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ char		**ft_strsplit(char const *s, char c)
 		return (NULL);
 	if (ft_strlen(s) == 0)
 	{
-		if (!(str = (char**)malloc(sizeof(char*))))
+		if (!(str = (char**)malloc(sizeof(char*) * 2)))
 			return (NULL);
 		str[0] = ft_strdup("");
+		str[1] = NULL;
 		return (str);
 	}
 	if (!(str = (char**)malloc(sizeof(char*) * (ft_numsplit(s, c) + 1))))

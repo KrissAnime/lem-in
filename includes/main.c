@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 14:15:06 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:28:31 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_ant			*init(void)
 	ant->psize = 1;
 	ant->ants = 0;
 	ant->num = 0;
+	ant->stin = -1;
+	ant->edin = -1;
 	return (ant);
 }
 
@@ -35,7 +37,8 @@ static size_t	fail(t_ant **ant, char *s)
 {
 	ft_putendl(s);
 	free_ant(ant);
-	exit(0);
+	free(ant);
+	exit(1);
 }
 
 static size_t	final_free(t_ant **ant, char *s)
@@ -53,7 +56,7 @@ static size_t	final_free(t_ant **ant, char *s)
 	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
 	free(*ant);
-	exit(0);
+	exit(1);
 }
 
 int				main(void)
@@ -62,6 +65,8 @@ int				main(void)
 
 	ant = init();
 	if (!read_map(&ant))
+		fail(&ant, "Unable to read map");
+	if ((int)ant->stin < 0 || (int)ant->edin < 0)
 		fail(&ant, "Unable to read map");
 	if (!real_room(&ant, 0, 0))
 		fail(&ant, "Room error detected");
@@ -73,9 +78,9 @@ int				main(void)
 	if (!find_links(&ant, 1, ant->stin, ant->edin))
 	{
 		(final_free(&ant, "Failed to connect to end"));
-		exit(0);
+		exit(1);
 	}
 	final_task(&ant);
 	final_free(&ant, "Done");
-	exit(0);
+	exit(1);
 }

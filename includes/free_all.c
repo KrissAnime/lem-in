@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:35:10 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 10:23:57 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:19:39 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,4 @@ void	free_ant(t_ant **ant)
 {
 	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
-	free(*ant);
 }

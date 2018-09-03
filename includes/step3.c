@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 06:32:04 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 12:59:24 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:21:20 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		has_link2(char *link, char *name)
 	int		y;
 	char	*temp;
 
+	temp = NULL;
 	temp = get_link(link, 0, 1);
 	y = ft_strequ(temp, name);
 	free(temp);
@@ -41,6 +42,7 @@ int		has_link(char *link, char *name)
 	int		y;
 	char	*temp;
 
+	temp = NULL;
 	temp = get_link(link, 0, 0);
 	y = ft_strequ(temp, name);
 	free(temp);

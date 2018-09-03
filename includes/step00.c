@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 11:11:59 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 12:46:09 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:21:41 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	*get_name(t_ant **ant, size_t i)
 	char	*name;
 
 	x = 0;
+	name = NULL;
 	while ((*ant)->rooms[i][x] != ' ' && (*ant)->rooms[i][x])
 		x++;
 	name = ft_strsub((*ant)->rooms[i], 0, x);

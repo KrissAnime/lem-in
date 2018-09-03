@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 14:15:34 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 10:39:24 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 size_t	line_check(char **line, t_ant **ant)
 {
-	if (ft_strequ((*line), "##start"))
+	if ((*line)[0] == 'L')
+		return (FAIL);
+	else if (ft_strequ((*line), "##start"))
 		return (START);
 	else if (ft_strequ((*line), "##end"))
 		return (END);
-	else if ((*line)[0] == '#' && (*line)[1] != '#')
-		return (COMMENT);
-	else if ((*line)[0] == '#' && (*line)[1] == '#')
+	else if ((*line)[0] == '#')
 		return (COMMENT);
 	else if (room_format((*line), 1))
 		return (ROOM);

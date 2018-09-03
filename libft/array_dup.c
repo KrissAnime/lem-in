@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 11:02:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 14:33:37 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:11:39 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	**array_dup(char **s)
 		ret[x] = ft_strdup(s[x]);
 		x++;
 	}
-	ret[x] = s[x];
+	ret[x] = NULL;
 	return (ret);
 }

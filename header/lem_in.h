@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 11:38:32 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:32:35 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ typedef struct	s_ant
 
 t_ant			*init(void);
 
-void			move_end(t_ant **ant, size_t x, size_t k);
-void			move_start(t_ant **ant, size_t x, size_t k);
-
 char			**destroyer(t_ant **ant, char **curr, size_t target);
 char			**builder(t_ant **ant, char **curr, char *line);
 
@@ -60,11 +57,9 @@ char			**build_pos(t_ant **ant, char **curr, char **line);
 char			**break_path(t_ant **ant, char **curr);
 char			**build_path(t_ant **ant, char **curr, char *line);
 
-char			*room_changer(char *mod, char *old, size_t x);
 char			*get_name(t_ant **ant, size_t i);
 char			*get_link(char *link, size_t x, size_t code);
 char			*pass(char *room);
-char			*change(char *s, char b);
 
 char			*room_name(char *s);
 size_t			compare_name(char *test, char *test2, char *name);

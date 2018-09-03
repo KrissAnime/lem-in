@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 08:29:57 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:36:51 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		loc_scrap(t_ant **ant)
 	char	*t;
 
 	x = 0;
+	t = NULL;
 	while ((*ant)->rooms[x])
 	{
 		y = 0;
@@ -38,22 +39,6 @@ static void		loc_scrap(t_ant **ant)
 		ft_strdel(&t);
 		x++;
 	}
-}
-
-static size_t	dub(t_ant **ant, size_t x, size_t y)
-{
-	while ((*ant)->rooms[x])
-	{
-		y = x + 1;
-		while ((*ant)->rooms[y])
-		{
-			if (ft_strequ((*ant)->rooms[x], (*ant)->rooms[y]))
-				return (FAIL);
-			y++;
-		}
-		x++;
-	}
-	return (PASS);
 }
 
 size_t			real_room(t_ant **ant, size_t x, size_t y)
@@ -69,5 +54,5 @@ size_t			real_room(t_ant **ant, size_t x, size_t y)
 		x++;
 	}
 	loc_scrap(ant);
-	return (dub(ant, 0, 0));
+	return (PASS);
 }

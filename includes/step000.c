@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 14:16:27 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:37:43 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,43 +26,25 @@ size_t	broken(char **a, char **b)
 	size_t	x;
 
 	if (ft_array_size(a) != ft_array_size(b))
+	{
+		free_array(a, ft_array_size(a));
+		a = NULL;
 		return (PASS);
+	}
 	x = 0;
 	while (a[x])
 	{
 		if (!ft_strequ(a[x], b[x]))
 		{
 			free_array(a, ft_array_size(a));
+			a = NULL;
 			return (PASS);
 		}
 		x++;
 	}
 	free_array(a, ft_array_size(a));
+	a = NULL;
 	return (FAIL);
-}
-
-char	*free_a(char *s1, char *s2)
-{
-	size_t	x;
-	size_t	y;
-	char	*new;
-
-	if (!(new = (char*)malloc(ft_strlen(s1) + ft_strlen(s2))))
-		return (NULL);
-	x = 0;
-	y = 0;
-	while (s1[x])
-	{
-		new[x] = s1[x];
-		x++;
-	}
-	if (s2[y] == '-' && s1[x - 1] == '-')
-		y++;
-	while (s2[y])
-		new[x++] = s2[y++];
-	free(s1);
-	new[x] = '\0';
-	return (new);
 }
 
 void	marching(t_ant **ant, size_t x)

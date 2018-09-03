@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 14:18:36 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/03 11:38:23 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 	test = NULL;
 	while (1)
 	{
-		test = array_dup((*ant)->path);
 		if (ft_strequ((*ant)->pos[loc][x], (*ant)->pos[e][0]))
 		{
 			(*ant)->path = build_path(ant, (*ant)->path, (*ant)->pos[e][0]);
@@ -128,10 +127,11 @@ size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 		}
 		if (newend(ant, loc, 1, 1) == 1)
 			break ;
+		test = array_dup((*ant)->path);
 		map(ant, 0, loc, ft_array_size((*ant)->path) - 1);
-		loc = location(ant);
 		if (!(broken(test, (*ant)->path)))
 			return (FAIL);
+		loc = location(ant);
 	}
 	return (PASS);
 }

@@ -6,11 +6,21 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 11:36:51 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 13:42:09 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+size_t			room_links(t_ant **ant)
+{
+	if (!((*ant)->rooms = (char**)malloc(sizeof(char*)))
+			|| !((*ant)->links = (char**)malloc(sizeof(char*))))
+		return (FAIL);
+	(*ant)->rooms[0] = NULL;
+	(*ant)->links[0] = NULL;
+	return (PASS);
+}
 
 void			edit_sted(t_ant **ant, size_t x)
 {

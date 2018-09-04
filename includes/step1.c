@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 10:39:24 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 14:11:35 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ size_t	line_check(char **line, t_ant **ant)
 		return (ROOM);
 	else if (check_link((*line), 0, 0, ant))
 		return (LINK);
+	free(line);
 	return (FAIL);
 }
 
@@ -81,6 +82,8 @@ int		read_room(t_ant **ant, char *line, size_t room)
 			return (FAIL);
 		}
 		(*ant)->stin = (*ant)->msize - 2;
+		ft_strdel(&line);
+		return (PASS);
 	}
 	if (room == 1 && room_format(line, 1))
 	{
@@ -90,9 +93,11 @@ int		read_room(t_ant **ant, char *line, size_t room)
 			return (FAIL);
 		}
 		(*ant)->edin = (*ant)->msize - 2;
+		ft_strdel(&line);
+		return (PASS);
 	}
-	ft_strdel(&line);
-	return (PASS);
+	free(line);
+	return (FAIL);
 }
 
 int		map_handler(t_ant **ant, char **line, size_t x)
@@ -118,12 +123,9 @@ int		map_handler(t_ant **ant, char **line, size_t x)
 	return (PASS);
 }
 
-int		read_map(t_ant **ant)
+int		read_map(t_ant **ant, size_t x, size_t k, int ret)
 {
 	char	*line;
-	size_t	x;
-	size_t	k;
-	int		ret;
 
 	line = NULL;
 	k = 0;
@@ -131,15 +133,17 @@ int		read_map(t_ant **ant)
 		return (FAIL);
 	if (!(get_ants(&line, ant, 0)))
 		return (FAIL);
+	if (!(room_links(ant)))
+		return (FAIL);
 	ft_strdel(&line);
 	while (get_next_line(0, &line))
 	{
 		k++;
 		x = line_check(&line, ant);
 		ret = map_handler(ant, &line, x);
-		if (ret == FAIL && k < 4)
+		if (ret == FAIL || x == FAIL)
 			return (FAIL);
-		if (ret == FAIL && k >= 4)
+		else if (ret == FAIL && k >= 5)
 			break ;
 		if (x != START && x != END)
 			ft_strdel(&line);

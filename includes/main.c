@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 11:28:31 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 14:09:51 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ t_ant			*init(void)
 
 	if (!(ant = (t_ant*)malloc(sizeof(t_ant))))
 		return (NULL);
-	if (!(ant->links = (char**)malloc(sizeof(char*)))
-			|| !(ant->rooms = (char**)malloc(sizeof(char*))))
-		return (NULL);
-	ant->links[0] = NULL;
-	ant->rooms[0] = NULL;
 	ant->msize = 1;
 	ant->lsize = 1;
 	ant->psize = 1;
@@ -64,8 +59,11 @@ int				main(void)
 	t_ant	*ant;
 
 	ant = init();
-	if (!read_map(&ant))
-		fail(&ant, "Unable to read map");
+	if (!read_map(&ant, 0, 0, 0))
+	{
+		ft_putendl("Data error detected");
+		exit(0);
+	}
 	if ((int)ant->stin < 0 || (int)ant->edin < 0)
 		fail(&ant, "Unable to read map");
 	if (!real_room(&ant, 0, 0))
@@ -82,5 +80,6 @@ int				main(void)
 	}
 	final_task(&ant);
 	final_free(&ant, "Done");
+	sleep(25);
 	exit(1);
 }

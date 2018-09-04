@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 11:32:35 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 13:49:54 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ size_t			compare_name(char *test, char *test2, char *name);
 int				read_room(t_ant **ant, char *line, size_t room);
 int				map_handler(t_ant **ant, char **line, size_t x);
 int				get_ants(char **line, t_ant **ant, size_t i);
-int				read_map(t_ant **ant);
+int				read_map(t_ant **ant, size_t x, size_t k, int ret);
 
 int				has_link(char *link, char *name);
 int				has_link2(char *link, char *name);
@@ -87,6 +87,8 @@ size_t			line_check(char **line, t_ant **ant);
 
 size_t			room_format(char *line, size_t i);
 size_t			real_room(t_ant **ant, size_t x, size_t y);
+
+size_t			room_links(t_ant **ant);
 
 void			edit_sted(t_ant **ant, size_t x);
 void			final_task(t_ant **ant);

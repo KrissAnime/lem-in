@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 14:11:35 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 09:29:35 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ size_t	line_check(char **line, t_ant **ant)
 		return (ROOM);
 	else if (check_link((*line), 0, 0, ant))
 		return (LINK);
-	free(line);
 	return (FAIL);
 }
 
@@ -47,16 +46,12 @@ int		get_ants(char **line, t_ant **ant, size_t i)
 	while ((*line)[i])
 	{
 		if (!ft_isdigit((*line)[i++]))
-		{
-			free((*line));
 			return (FAIL);
-		}
 	}
 	size = ft_atoi((*line));
 	num = ft_itoa(size);
 	if (!ft_strequ((*line), num) || size <= 0)
 	{
-		free((*line));
 		free(num);
 		return (FAIL);
 	}
@@ -70,83 +65,65 @@ int		get_ants(char **line, t_ant **ant, size_t i)
 **	2D array
 */
 
-int		read_room(t_ant **ant, char *line, size_t room)
+int		read_room(t_ant **ant, size_t room, size_t *x)
 {
-	ft_strdel(&line);
-	get_next_line(0, &line);
-	if (room == 0 && room_format(line, 1))
+	*x += 1;
+	if (room == 0 && room_format((*ant)->map[*x], 1))
 	{
-		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, line)))
-		{
-			free(line);
+		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, (*ant)->map[*x])))
 			return (FAIL);
-		}
 		(*ant)->stin = (*ant)->msize - 2;
-		ft_strdel(&line);
 		return (PASS);
 	}
-	if (room == 1 && room_format(line, 1))
+	if (room == 1 && room_format((*ant)->map[*x], 1))
 	{
-		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, line)))
-		{
-			free(line);
+		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, (*ant)->map[*x])))
 			return (FAIL);
-		}
 		(*ant)->edin = (*ant)->msize - 2;
-		ft_strdel(&line);
 		return (PASS);
 	}
-	free(line);
 	return (FAIL);
 }
 
-int		map_handler(t_ant **ant, char **line, size_t x)
+int		map_handler(t_ant **ant, size_t *x, int line)
 {
-	if (x == START && !read_room(ant, (*line), 0))
+	if (line == START && !read_room(ant, 0, x))
 		return (FAIL);
-	else if (x == COMMENT)
+	else if (line == COMMENT)
 		return (PASS);
-	else if (x == END && !read_room(ant, (*line), 1))
+	else if (line == END && !read_room(ant, 1, x))
 		return (FAIL);
-	else if (x == ROOM)
+	else if (line == ROOM)
 	{
-		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, (*line))))
+		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, (*ant)->map[*x])))
 			return (FAIL);
 	}
-	else if (x == LINK)
+	else if (line == LINK)
 	{
-		if (!((*ant)->links = build_link(ant, (*ant)->links, (*line))))
+		if (!((*ant)->links = build_link(ant, (*ant)->links, (*ant)->map[*x])))
 			return (FAIL);
 	}
-	else if (x != START && x != END && x != COMMENT && x != LINK && x != ROOM)
+	else if (line != START && line != END && line != COMMENT && line != LINK
+			&& line != ROOM)
 		return (FAIL);
 	return (PASS);
 }
 
-int		read_map(t_ant **ant, size_t x, size_t k, int ret)
+int		read_map(t_ant **ant)
 {
 	char	*line;
 
 	line = NULL;
-	k = 0;
-	if (!(get_next_line(0, &line)))
+	if (!((*ant)->map = (char**)malloc(sizeof(char*))))
 		return (FAIL);
-	if (!(get_ants(&line, ant, 0)))
-		return (FAIL);
-	if (!(room_links(ant)))
-		return (FAIL);
-	ft_strdel(&line);
+	(*ant)->map[0] = NULL;
 	while (get_next_line(0, &line))
 	{
-		k++;
-		x = line_check(&line, ant);
-		ret = map_handler(ant, &line, x);
-		if (ret == FAIL || x == FAIL)
-			return (FAIL);
-		else if (ret == FAIL && k >= 5)
-			break ;
-		if (x != START && x != END)
-			ft_strdel(&line);
+		(*ant)->map = map_read(ant, line);
+		ft_strdel(&line);
 	}
-	return (PASS);
+	free(line);
+	if (!(room_links(ant)))
+		return (FAIL);
+	return (manage_data(ant, 0, 0, 0));
 }

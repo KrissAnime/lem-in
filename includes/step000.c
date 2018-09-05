@@ -6,11 +6,30 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 11:37:43 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 09:27:53 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+int		manage_data(t_ant **ant, size_t x, int ret, int line)
+{
+	while ((*ant)->map[x])
+	{
+		if (x == 0)
+		{
+			if (!(get_ants(&(*ant)->map[x], ant, 0)))
+				return (FAIL);
+			x++;
+		}
+		line = line_check(&(*ant)->map[x], ant);
+		ret = map_handler(ant, &x, line);
+		if (ret == FAIL || x == FAIL)
+			return (FAIL);
+		x++;
+	}
+	return (PASS);
+}
 
 size_t	build(t_ant **ant, char **temp)
 {
@@ -77,6 +96,9 @@ void	final_task(t_ant **ant)
 	i = (*ant)->ants;
 	r = ft_array_size((*ant)->path);
 	y = 1;
+	print_array((*ant)->map, '\n', 1);
+	ft_putchar('\n');
+	free_array((*ant)->map, ft_array_size((*ant)->map));
 	while (i)
 	{
 		marching(ant, x);

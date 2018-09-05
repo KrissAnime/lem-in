@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 13:49:54 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 09:22:44 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct	s_ant
 	size_t		lsize;
 	size_t		csize;
 	size_t		psize;
+	size_t		rsize;
+	char		**map;
 	char		**links;
 	char		**rooms;
 	char		**path;
@@ -64,10 +66,10 @@ char			*pass(char *room);
 char			*room_name(char *s);
 size_t			compare_name(char *test, char *test2, char *name);
 
-int				read_room(t_ant **ant, char *line, size_t room);
-int				map_handler(t_ant **ant, char **line, size_t x);
+int				read_room(t_ant **ant, size_t room, size_t *x);
+int				map_handler(t_ant **ant, size_t *x, int line);
 int				get_ants(char **line, t_ant **ant, size_t i);
-int				read_map(t_ant **ant, size_t x, size_t k, int ret);
+int				read_map(t_ant **ant);
 
 int				has_link(char *link, char *name);
 int				has_link2(char *link, char *name);
@@ -97,5 +99,8 @@ size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e);
 
 void			free_array_2(char ***array, size_t x);
 void			free_ant(t_ant **ant);
+
+int				manage_data(t_ant **ant, size_t	x, int ret, int line);
+char			**map_read(t_ant **ant, char *line);
 
 #endif

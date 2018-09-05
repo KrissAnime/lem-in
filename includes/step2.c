@@ -6,11 +6,36 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 13:42:09 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 08:40:47 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+char			**map_read(t_ant **ant, char *line)
+{
+	char	**new;
+	size_t	x;
+
+	x = 0;
+	(*ant)->rsize++;
+	if (!(new = (char**)malloc(sizeof(char*) * (*ant)->rsize)))
+		exit(0);
+	while ((*ant)->map[x])
+	{
+		new[x] = ft_strdup((*ant)->map[x]);
+		if (new[x] == NULL)
+		{
+			free_array(new, x);
+			exit(0);
+		}
+		x++;
+	}
+	new[x++] = ft_strdup(line);
+	new[x] = NULL;
+	free_array((*ant)->map, ft_array_size((*ant)->map));
+	return (new);
+}
 
 size_t			room_links(t_ant **ant)
 {

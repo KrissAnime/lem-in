@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 14:09:51 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 09:46:21 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_ant			*init(void)
 	if (!(ant = (t_ant*)malloc(sizeof(t_ant))))
 		return (NULL);
 	ant->msize = 1;
+	ant->rsize = 1;
 	ant->lsize = 1;
 	ant->psize = 1;
 	ant->ants = 0;
@@ -36,7 +37,7 @@ static size_t	fail(t_ant **ant, char *s)
 	exit(1);
 }
 
-static size_t	final_free(t_ant **ant, char *s)
+static void	final_free(t_ant **ant, char *s)
 {
 	size_t	x;
 
@@ -50,8 +51,6 @@ static size_t	final_free(t_ant **ant, char *s)
 	free((*ant)->pos);
 	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
-	free(*ant);
-	exit(1);
 }
 
 int				main(void)
@@ -59,10 +58,10 @@ int				main(void)
 	t_ant	*ant;
 
 	ant = init();
-	if (!read_map(&ant, 0, 0, 0))
+	if (!read_map(&ant))
 	{
 		ft_putendl("Data error detected");
-		exit(0);
+		exit(1);
 	}
 	if ((int)ant->stin < 0 || (int)ant->edin < 0)
 		fail(&ant, "Unable to read map");
@@ -74,12 +73,10 @@ int				main(void)
 		fail(&ant, "Possible route malloc fail");
 	ant->pos[0] = NULL;
 	if (!find_links(&ant, 1, ant->stin, ant->edin))
-	{
-		(final_free(&ant, "Failed to connect to end"));
-		exit(1);
-	}
-	final_task(&ant);
-	final_free(&ant, "Done");
-	sleep(25);
-	exit(1);
+		final_free(&ant, "Failed to connect to end");
+	else
+		final_task(&ant);
+		final_free(&ant, "Success!");
+	free(ant);
+	return (0);
 }

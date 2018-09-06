@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/05 09:29:35 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/06 08:27:29 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,11 @@ int		read_map(t_ant **ant)
 		ft_strdel(&line);
 	}
 	free(line);
+	if (ft_array_size((*ant)->map) < 4)
+	{
+		free_array((*ant)->map, ft_array_size((*ant)->map));
+		return (FAIL);
+	}
 	if (!(room_links(ant)))
 		return (FAIL);
 	return (manage_data(ant, 0, 0, 0));

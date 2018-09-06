@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/05 09:46:21 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/06 08:40:38 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ static void	final_free(t_ant **ant, char *s)
 	free((*ant)->pos);
 	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
+	free(*ant);
+	sleep(15);
+	exit(0);
 }
 
 int				main(void)
@@ -61,6 +64,7 @@ int				main(void)
 	if (!read_map(&ant))
 	{
 		ft_putendl("Data error detected");
+		free(ant);
 		exit(1);
 	}
 	if ((int)ant->stin < 0 || (int)ant->edin < 0)
@@ -77,6 +81,5 @@ int				main(void)
 	else
 		final_task(&ant);
 		final_free(&ant, "Success!");
-	free(ant);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/05 09:27:53 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/06 08:39:25 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,12 @@ void	final_task(t_ant **ant)
 {
 	size_t	i;
 	size_t	x;
-	size_t	y;
-	size_t	r;
 
 	x = 1;
 	if (!ft_strequ((*ant)->path[ft_array_size((*ant)->path) - 1],
 				(*ant)->pos[(*ant)->edin][0]))
 		return ;
 	i = (*ant)->ants;
-	r = ft_array_size((*ant)->path);
-	y = 1;
 	print_array((*ant)->map, '\n', 1);
 	ft_putchar('\n');
 	free_array((*ant)->map, ft_array_size((*ant)->map));

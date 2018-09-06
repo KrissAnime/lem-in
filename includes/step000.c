@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/06 08:39:25 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/06 09:14:47 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,5 @@ void	final_task(t_ant **ant)
 		i--;
 	}
 	free_array((*ant)->path, ft_array_size((*ant)->path));
+	final_free(ant, "Success!");
 }

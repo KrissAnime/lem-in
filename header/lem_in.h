@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/05 09:22:44 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/06 09:14:12 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ size_t			room_format(char *line, size_t i);
 size_t			real_room(t_ant **ant, size_t x, size_t y);
 
 size_t			room_links(t_ant **ant);
+
+void			final_free(t_ant **ant, char *s);
 
 void			edit_sted(t_ant **ant, size_t x);
 void			final_task(t_ant **ant);

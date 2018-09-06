@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/06 08:40:38 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/06 09:15:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static size_t	fail(t_ant **ant, char *s)
 	exit(1);
 }
 
-static void	final_free(t_ant **ant, char *s)
+void			final_free(t_ant **ant, char *s)
 {
 	size_t	x;
 
@@ -52,7 +52,6 @@ static void	final_free(t_ant **ant, char *s)
 	free_array((*ant)->rooms, ft_array_size((*ant)->rooms));
 	free_array((*ant)->links, ft_array_size((*ant)->links));
 	free(*ant);
-	sleep(15);
 	exit(0);
 }
 
@@ -80,6 +79,5 @@ int				main(void)
 		final_free(&ant, "Failed to connect to end");
 	else
 		final_task(&ant);
-		final_free(&ant, "Success!");
 	return (0);
 }

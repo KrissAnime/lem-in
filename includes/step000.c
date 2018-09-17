@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   step000.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cbester <cbester@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 10:28:49 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/06 09:14:47 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/17 09:29:54 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		manage_data(t_ant **ant, size_t x, int ret, int line)
 		if (x == 0)
 		{
 			if (!(get_ants(&(*ant)->map[x], ant, 0)))
-				return (FAIL);
+				error_msg("Invalid ant number");
 			x++;
 		}
 		line = line_check(&(*ant)->map[x], ant);
@@ -35,7 +35,7 @@ size_t	build(t_ant **ant, char **temp)
 {
 	*temp = NULL;
 	if (!((*ant)->path = (char**)malloc(sizeof(char*))))
-		return (FAIL);
+		error_msg("Path array fail");
 	(*ant)->path[0] = NULL;
 	return (PASS);
 }

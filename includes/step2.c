@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   step2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cbester <cbester@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 08:28:11 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/05 08:40:47 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/17 09:28:44 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char			**map_read(t_ant **ant, char *line)
 		if (new[x] == NULL)
 		{
 			free_array(new, x);
-			exit(0);
+			exit(1);
 		}
 		x++;
 	}

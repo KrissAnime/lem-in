@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cbester <cbester@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:08:44 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/06 09:14:12 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/17 08:59:11 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void			final_free(t_ant **ant, char *s);
 
 void			edit_sted(t_ant **ant, size_t x);
 void			final_task(t_ant **ant);
+void			error(void);
+void			error_msg(char *msg);
 
 size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e);
 

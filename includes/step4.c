@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   step4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cbester <cbester@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:27:30 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 11:38:23 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/17 09:25:37 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ size_t			find_links(t_ant **ant, size_t x, size_t loc, size_t e)
 		test = array_dup((*ant)->path);
 		map(ant, 0, loc, ft_array_size((*ant)->path) - 1);
 		if (!(broken(test, (*ant)->path)))
-			return (FAIL);
+			error_msg("Unable to find route");
 		loc = location(ant);
 	}
 	return (PASS);

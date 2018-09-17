@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cbester <cbester@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:46 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/06 09:15:46 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/17 09:30:41 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_ant			*init(void)
 	t_ant	*ant;
 
 	if (!(ant = (t_ant*)malloc(sizeof(t_ant))))
-		return (NULL);
+		error_msg("Ant struct malloc fail");
 	ant->msize = 1;
 	ant->rsize = 1;
 	ant->lsize = 1;
@@ -27,14 +27,6 @@ t_ant			*init(void)
 	ant->stin = -1;
 	ant->edin = -1;
 	return (ant);
-}
-
-static size_t	fail(t_ant **ant, char *s)
-{
-	ft_putendl(s);
-	free_ant(ant);
-	free(ant);
-	exit(1);
 }
 
 void			final_free(t_ant **ant, char *s)
@@ -67,16 +59,16 @@ int				main(void)
 		exit(1);
 	}
 	if ((int)ant->stin < 0 || (int)ant->edin < 0)
-		fail(&ant, "Unable to read map");
+		error_msg("No start or end room");
 	if (!real_room(&ant, 0, 0))
-		fail(&ant, "Room error detected");
+		error_msg("Room verefication failed");
 	if (!check_path(&ant))
-		fail(&ant, "Path broken");
+		error_msg("Path check fail");
 	if (!(ant->pos = (char***)malloc(sizeof(char**) * ant->msize)))
-		fail(&ant, "Possible route malloc fail");
+		error_msg("Pos route malloc fail");
 	ant->pos[0] = NULL;
 	if (!find_links(&ant, 1, ant->stin, ant->edin))
-		final_free(&ant, "Failed to connect to end");
+		error_msg("Failed to connect to end");
 	else
 		final_task(&ant);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   step1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cbester <cbester@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 09:12:31 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/06 08:27:29 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/17 09:31:51 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,24 @@ int		read_room(t_ant **ant, size_t room, size_t *x)
 int		map_handler(t_ant **ant, size_t *x, int line)
 {
 	if (line == START && !read_room(ant, 0, x))
-		return (FAIL);
+		error_msg("Start room fail");
 	else if (line == COMMENT)
 		return (PASS);
 	else if (line == END && !read_room(ant, 1, x))
-		return (FAIL);
+		error_msg("End room fail");
 	else if (line == ROOM)
 	{
 		if (!((*ant)->rooms = builder(ant, (*ant)->rooms, (*ant)->map[*x])))
-			return (FAIL);
+			error_msg("Builder function fail");
 	}
 	else if (line == LINK)
 	{
 		if (!((*ant)->links = build_link(ant, (*ant)->links, (*ant)->map[*x])))
-			return (FAIL);
+			error_msg("Link builder fail");
 	}
 	else if (line != START && line != END && line != COMMENT && line != LINK
 			&& line != ROOM)
-		return (FAIL);
+		error_msg("Invalid line in map");
 	return (PASS);
 }
 
@@ -115,7 +115,7 @@ int		read_map(t_ant **ant)
 
 	line = NULL;
 	if (!((*ant)->map = (char**)malloc(sizeof(char*))))
-		return (FAIL);
+		error_msg("Ant map malloc fail");
 	(*ant)->map[0] = NULL;
 	while (get_next_line(0, &line))
 	{
@@ -124,11 +124,8 @@ int		read_map(t_ant **ant)
 	}
 	free(line);
 	if (ft_array_size((*ant)->map) < 4)
-	{
-		free_array((*ant)->map, ft_array_size((*ant)->map));
-		return (FAIL);
-	}
+		error_msg("Not enough map information");
 	if (!(room_links(ant)))
-		return (FAIL);
+		error_msg("Room link malloc fail");
 	return (manage_data(ant, 0, 0, 0));
 }
